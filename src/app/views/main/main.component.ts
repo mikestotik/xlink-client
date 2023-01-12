@@ -50,7 +50,6 @@ export class MainComponent implements OnInit, OnDestroy {
     }
 
     this.user = this.store.selectSnapshot(AccountState.user);
-    console.log(this.user);
     // const devices = this.store.selectSnapshot(DeviceState.selectAll);
 
     // Device Subscriptions:
