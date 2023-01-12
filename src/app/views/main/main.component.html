@@ -1,0 +1,46 @@
+<main class="main">
+  <div class="main-menu">
+    <div class="main-menu__brand">
+      <div class="nav-item" matRipple>
+        <i [ngClass]="appIcon"></i>
+      </div>
+    </div>
+
+    <div class="main-menu__navigation">
+      <div class="nav-item" matRipple routerLink="/app/devices" routerLinkActive="active">
+        <i class="icon icon-harddrives"></i>
+      </div>
+
+      <div class="nav-item" matRipple routerLink="/app/assets" routerLinkActive="active">
+        <i class="icon icon-package"></i>
+      </div>
+
+      <div class="nav-item" matRipple routerLink="/app/recipes" routerLinkActive="active">
+        <i class="icon icon-receipt"></i>
+      </div>
+
+      <div class="nav-item" matRipple routerLink="/app/stat" routerLinkActive="active">
+        <i class="icon icon-pulse"></i>
+      </div>
+
+      <div class="nav-item" matRipple routerLink="/app/stat" routerLinkActive="active">
+        <i class="icon icon-stats-up"></i>
+      </div>
+
+      <div class="nav-item" matRipple routerLink="/app/settings" routerLinkActive="active">
+        <i class="icon icon-settings"></i>
+      </div>
+    </div>
+
+    <div class="main-menu__exit">
+      <div class="nav-item" matRipple (click)="onExit()">
+        <i class="icon icon-shift-left"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-payload">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+

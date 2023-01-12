@@ -1,0 +1,43 @@
+:root {
+  --font-family-default: 'Work Sans', sans-serif;
+  --font-size-default: 16px;
+  --line-height-default: 24px;
+  --font-weight-default: 400;
+
+  --color-white: #ececec;
+  --color-silver: #D9D8D7;
+  --color-grey: #909090;
+  --color-grey-dark: #47494c;
+  --color-dark-primary: #333438;
+  --color-dark-secondary: #28292d;
+  --color-black: #000000;
+  --color-red: #f44336;
+  --color-orange: #df7921;
+  --color-green: #43a047;
+
+  --button-height: 40px;
+  --button-border-radius: 4px;
+
+  --dialog-border-radius: 4px;
+  --dialog-padding: 20px 20px 24px;
+  --dialog-width: 320px;
+
+  // APP VARS
+
+  // Colors:
+  --color-success: var(--color-green);
+  --color-warn: var(--color-orange);
+  --color-danged: var(--color-red);
+
+  --color-brand: var(--color-green);
+
+  // Text
+  --text-color: var(--color-white);
+
+  // Card
+  --background-accent: #ffffff10;
+
+  // Input
+  --input-autofill-background: #2a2b2e;
+  --input-autofill-text-color: #d4d5d9;
+}

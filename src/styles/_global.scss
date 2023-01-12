@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  //text-rendering: geometricPrecision;
+  //color-rendering: optimizeQuality;
+  //shape-rendering: geometricPrecision;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-default);
+  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-default);
+  line-height: var(--line-height-default);
+}

@@ -1,0 +1,127 @@
+// Not using this component, use <i class="icon icon-name">;
+mat-icon {
+  display: none;
+}
+
+i[matSuffix] {
+  font-size: 20px;
+  position: relative;
+  cursor: pointer;
+  padding: 12px;
+  opacity: 0.5;
+}
+
+.mdc-switch {
+  svg {
+    display: none;
+  }
+}
+
+// Redefine Theme
+.theme {
+  /* Change the white to any color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--input-autofill-background) inset;
+    -webkit-text-fill-color: var(--input-autofill-text-color);
+  }
+
+  // Buttons
+  // ********************
+  .mdc-button .mdc-button__label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 128px;
+  }
+
+  .mat-mdc-button.mat-mdc-button-base,
+  .mat-mdc-raised-button.mat-mdc-button-base,
+  .mat-mdc-unelevated-button.mat-mdc-button-base,
+  .mat-mdc-outlined-button.mat-mdc-button-base {
+    min-height: var(--button-height);
+    border-radius: var(--button-border-radius);
+  }
+
+
+  .mat-mdc-form-field-hint-wrapper {
+    opacity: 0.75;
+  }
+
+  .mat-mdc-form-field-hint-wrapper,
+  .mat-mdc-form-field-error-wrapper {
+    position: relative;
+    padding: 0;
+  }
+
+  mat-hint {
+    opacity: 0.75;
+  }
+
+  .mat-mdc-form-field-bottom-align::before {
+    height: 0;
+  }
+
+  // Input
+  // ********************
+  .mdc-text-field--filled:not(.mdc-text-field--disabled),
+  .mat-mdc-form-field-focus-overlay,
+  .mdc-text-field--disabled.mdc-text-field--filled {
+    background-color: transparent;
+  }
+
+  .mdc-text-field {
+    padding: 0;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: var(--input-height);
+  }
+
+  .mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
+    transform: none;
+  }
+
+  // Tree
+  // ********************
+  mat-tree-node {
+    font-weight: 400;
+  }
+
+  // Dialog
+  // ********************
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: var(--dialog-border-radius);
+    padding: var(--dialog-padding);
+    background-color: var(--color-dark-primary);
+  }
+
+  .mat-mdc-card {
+    background-color: var(--color-dark-primary);
+  }
+
+  .mdc-menu-surface {
+    background-color: var(--color-grey-dark);
+  }
+
+  .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+  .mat-button-toggle-group-appearance-standard {
+    border: none;
+  }
+
+  .mat-button-toggle-appearance-standard {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mat-button-toggle-checked {
+    background-color: var(--color-brand);
+  }
+
+  .mat-mdc-table {
+    background-color: var(--color-dark-primary);
+  }
+
+}

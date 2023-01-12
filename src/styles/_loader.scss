@@ -1,0 +1,30 @@
+.loader {
+  display: inline-flex;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid;
+    border-color: var(--color-brand) transparent var(--color-brand) transparent;
+    animation: loader 1.2s linear infinite;
+  }
+
+  &-invert {
+    &:after {
+      border-color: var(--color-white) transparent var(--color-white) transparent;
+    }
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

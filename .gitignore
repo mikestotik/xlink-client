@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+package-lock.json
+tmp/
+artifact.zip
+.fleet
+src/assets/ref/

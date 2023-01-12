@@ -1,0 +1,13 @@
+.theme {
+  &-light {
+  }
+
+  &-dark {
+    background: linear-gradient(135deg, #2d2e32, var(--color-dark-secondary));
+    color: var(--text-color);
+
+    a {
+      color: var(--color-brand);
+    }
+  }
+}

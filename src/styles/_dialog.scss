@@ -1,0 +1,41 @@
+.dialog {
+  border-radius: 8px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  width: var(--dialog-width);
+
+  &-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__close {
+      margin-left: auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+
+    button {
+      margin-top: 12px;
+    }
+  }
+}

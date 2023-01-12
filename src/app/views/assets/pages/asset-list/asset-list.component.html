@@ -1,0 +1,86 @@
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-info">
+      <div class="page-header-info__title">
+        <i class="icon icon-package"></i>
+        <span>Assets</span>
+      </div>
+      <div class="page-header-info__sub-title">Items: {{ assets.length }}</div>
+    </div>
+    <div class="page-header-actions">
+      <button mat-flat-button color="primary" (click)="onAdd()">+ Add Asset</button>
+    </div>
+  </div>
+
+  <div class="page-payload">
+    <table mat-table [dataSource]="assets" class="elevation">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.desc ? element.desc : '-' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef>Unit</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.meta.unit ? element.meta.unit : '-' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="permission">
+        <th mat-header-cell *matHeaderCellDef>Permission</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="chip" [ngClass]="element.permission === 0 ? 'chip-success': 'chip-warn'">
+            {{ element.permission | assetPermissionName: 'perm' }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Data Type</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="chip">{{ element.type | assetPermissionName: 'type' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef>Created</th>
+        <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="updated">
+        <th mat-header-cell *matHeaderCellDef>Updated</th>
+        <td mat-cell *matCellDef="let element">{{ element.updated | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef>Link</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.link }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="device">
+        <th mat-header-cell *matHeaderCellDef>Device</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="chip">
+            <i class="icon icon-harddrive"></i>
+            <span>{{ element.device | assetDeviceName }}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;" (click)="onEdit(row)"></tr>
+    </table>
+  </div>
+</div>

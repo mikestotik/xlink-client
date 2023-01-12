@@ -1,0 +1,38 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &-header {
+    display: flex;
+    padding: 8px 0;
+
+    &-info {
+      &__title {
+        font-size: 24px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+
+        i {
+          cursor: pointer;
+          margin-right: 16px;
+          color: var(--color-brand);
+        }
+      }
+
+      &__sub-title {
+        opacity: 0.5;
+      }
+    }
+
+    &-actions {
+      margin-left: auto;
+    }
+  }
+
+  &-payload {
+    flex: 1 0 auto;
+    padding: 8px 0;
+  }
+}

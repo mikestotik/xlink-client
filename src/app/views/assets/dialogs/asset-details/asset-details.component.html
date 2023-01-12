@@ -1,0 +1,99 @@
+<form class="dialog" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="dialog-header">
+    <div class="dialog-header__title">{{ asset ? 'Edit Asset' : 'New Asset'}}</div>
+
+    <div class="dialog-header__close" (click)="onClose()">
+      <i class="icon icon-close"></i>
+    </div>
+  </div>
+
+  <div class="dialog-content" *ngIf="form.controls.meta as metaForm">
+    <mat-form-field *ngIf="form.controls.title as control" floatLabel="always">
+      <mat-label>Title</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-">
+      <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls.desc as control" floatLabel="always">
+      <mat-label>Description</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls.device as control" floatLabel="always">
+      <mat-label>Device</mat-label>
+      <mat-select [formControl]="control" placeholder="-">
+        <mat-option *ngFor="let item of devices$ | async" [value]="item.id">
+          {{ item.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls.link as control" floatLabel="always">
+      <mat-label>Link</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-">
+      <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls.permission as control" floatLabel="always">
+      <mat-label>Permission</mat-label>
+      <mat-select [formControl]="control" placeholder="-">
+        <mat-option *ngFor="let item of permissions" [value]="item.type">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-field-group">
+      <mat-form-field class="form-field-group__item" *ngIf="form.controls.type as control" floatLabel="always">
+        <mat-label>Data Type</mat-label>
+        <mat-select [formControl]="control" placeholder="-">
+          <mat-option *ngFor="let item of types" [value]="item.type">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-group__item" *ngIf="metaForm.controls.unit as control" floatLabel="always">
+        <mat-label>Unit</mat-label>
+        <mat-select [formControl]="control" placeholder="-">
+          <mat-option *ngFor="let item of units" [value]="item.type">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field-group">
+      <mat-form-field class="form-field-group__item" *ngIf="metaForm.controls.default as control" floatLabel="always">
+        <mat-label>Default Value</mat-label>
+        <input matInput appInput [formControl]="control" placeholder="-">
+        <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-group__item" *ngIf="metaForm.controls.min as control" floatLabel="always">
+        <mat-label>Min</mat-label>
+        <input matInput appInput [formControl]="control" placeholder="-">
+        <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-group__item" *ngIf="metaForm.controls.max as control" floatLabel="always">
+        <mat-label>Max</mat-label>
+        <input matInput appInput [formControl]="control" placeholder="-">
+        <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
+      <div *ngIf="!formSent">{{ asset ? 'Update' : 'Save'}}</div>
+      <div *ngIf="formSent" class="loader loader-invert"></div>
+    </button>
+
+    <button mat-flat-button color="warn" type="button" *ngIf="asset" (click)="onDelete()">
+      <div *ngIf="!formSent">Delete</div>
+      <div *ngIf="formSent" class="loader loader-invert"></div>
+    </button>
+  </div>
+</form>

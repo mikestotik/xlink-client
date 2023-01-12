@@ -1,0 +1,9 @@
+.form-field-group {
+  display: flex;
+  margin: 0 -4px;
+
+  &__item {
+    flex: 1;
+    margin: 0 4px;
+  }
+}

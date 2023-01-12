@@ -1,0 +1,27 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  border-radius: 16px;
+  padding: 0 16px;
+  background: var(--color-grey-dark);
+  font-size: 13px;
+
+  i {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  &-success {
+    background: var(--color-success);
+  }
+
+  &-warn {
+    background: var(--color-warn);
+  }
+
+  &-danger {
+    background: var(--color-danged);
+  }
+}
