@@ -9,37 +9,68 @@
     border-bottom: 1px solid #ffffff10;
     padding: 8px 0;
 
+    //&__icon {
+    //  display: flex;
+    //  align-items: center;
+    //  margin-right: 8px;
+    //  //opacity: 0.5;
+    //  color: var(--color-brand);
+    //}
+
     &__title {
-      text-transform: uppercase;
       opacity: 0.75;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     &__status {
-      margin-left: 8px;
+      margin-left: 12px;
+      opacity: 0.75;
     }
 
     &__actions {
       margin-left: auto;
-
-      i {
-        opacity: 0.5;
-        margin-left: 8px;
-        cursor: pointer;
-        transition: opacity 256ms;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        &.active {
-          opacity: 1;
-          color: var(--color-brand);
-        }
-      }
+      display: flex;
+      align-items: center;
+      margin-right: 8px;
     }
   }
 
   &-payload {
+    padding: 8px;
+  }
+}
+
+.step-action {
+  margin-left: 16px;
+  color: var(--color-grey);
+  transition: color 256ms;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: var(--color-brand);
+  }
+
+  i {
+    margin-right: 6px;
+  }
+
+  &.active {
+    color: var(--color-brand);
+  }
+}
+
+.add-rule-action {
+  display: flex;
+  align-items: center;
+  color: var(--color-brand);
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  i {
+    margin-right: 8px;
   }
 }

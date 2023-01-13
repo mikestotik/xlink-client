@@ -9,7 +9,7 @@
     border-right: 1px solid rgba(255, 255, 255, 0.05);
 
     &__title {
-      flex: 0 0 72px;
+      flex: 0 0 88px;
       padding: 0 20px;
       font-size: 20px;
       display: flex;
@@ -46,7 +46,7 @@
   flex-direction: column;
 
   &-header {
-    flex: 0 0 72px;
+    flex: 0 0 88px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,6 +64,9 @@
     }
 
     &__actions {
+      button {
+        margin-left: 8px;
+      }
     }
   }
 

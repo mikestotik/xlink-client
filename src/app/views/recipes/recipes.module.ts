@@ -18,6 +18,7 @@ import { RecipeStepDetailsComponent } from './dialogs/recipe-step-details/recipe
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { RecipeWorkspaceComponent } from './pages/recipe-workspace/recipe-workspace.component';
 import { RecipesRoutes } from './recipes.routing';
+import { StepStatusPipe } from './pipes/step-status.pipe';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RecipesRoutes } from './recipes.routing';
     RecipeListComponent,
     RecipeDetailsComponent,
     RecipeWorkspaceComponent,
-    RecipeStepDetailsComponent
+    RecipeStepDetailsComponent,
+    StepStatusPipe
   ],
   exports: [
     RecipeDetailsComponent

@@ -5,9 +5,8 @@ export enum StepType {
 
 
 export enum StepStatus {
-  Disabled,
+  Stopped,
   Running,
   Pending,
-  Stopped,
   Completed,
 }

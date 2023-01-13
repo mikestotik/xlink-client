@@ -9,10 +9,12 @@ export interface StepPayload {
   timer?: Date;
   type: StepType;
   recipe: number;
+  disabled?: boolean;
 }
 
 
 export interface Step extends Entity, StepPayload {
   status: StepStatus;
   owner: number;
+  disabled?: boolean;
 }

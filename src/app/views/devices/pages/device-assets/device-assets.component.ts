@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { map, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Asset } from '../../../../interfaces/asset.interface';
+import { Device } from '../../../../interfaces/device.interface';
 import { AssetState } from '../../../../models/asset/store/asset.state';
+import { DeviceState } from '../../../../models/device/store/device.state';
 import { AssetDetailsComponent } from '../../dialogs/asset-details/asset-details.component';
 
 
@@ -14,10 +16,10 @@ import { AssetDetailsComponent } from '../../dialogs/asset-details/asset-details
 })
 export class DeviceAssetsComponent implements OnInit, OnDestroy {
 
+  public device!: Device;
   public assets!: Asset[];
   public columns: string[] = [ 'id', 'title', 'desc', 'unit', 'permission', 'type', 'created', 'updated', 'link' ];
 
-  private deviceId!: number;
   private destroy$ = new Subject<void>();
 
 
@@ -33,9 +35,12 @@ export class DeviceAssetsComponent implements OnInit, OnDestroy {
     this.route.url.pipe(
       map(() => this.route.snapshot.paramMap.get('id')),
       map(deviceId => Number(deviceId)),
-      tap(deviceId => this.deviceId = deviceId),
-      switchMap(deviceId => this.store.select(AssetState.selectByDevice).pipe(
-        map(filterFn => filterFn(deviceId))
+      switchMap(recipeId => this.store.select(DeviceState.selectOne).pipe(
+        map(filterFn => filterFn(recipeId))
+      )),
+      tap(device => this.device = device),
+      switchMap(device => this.store.select(AssetState.selectByDevice).pipe(
+        map(filterFn => filterFn(device.id))
       )),
       takeUntil(this.destroy$)
     )
@@ -52,7 +57,7 @@ export class DeviceAssetsComponent implements OnInit, OnDestroy {
   public onAdd(): void {
     this.dialog.open(AssetDetailsComponent, {
       data: {
-        device: this.deviceId
+        device: this.device.id
       }
     });
   }
