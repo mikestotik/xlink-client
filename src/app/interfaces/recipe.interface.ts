@@ -6,5 +6,7 @@ export interface RecipePayload {
 
 export interface Recipe extends RecipePayload {
   id: number;
+  created: Date | string;
+  updated: Date | string;
   owner: number;
 }

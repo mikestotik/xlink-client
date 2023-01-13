@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { map, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { filter, map, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Recipe } from '../../../../interfaces/recipe.interface';
 import { Step } from '../../../../interfaces/step.interface';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
@@ -38,6 +38,7 @@ export class RecipeWorkspaceComponent implements OnInit, OnDestroy {
       switchMap(recipeId => this.store.select(RecipeState.selectOne).pipe(
         map(filterFn => filterFn(recipeId))
       )),
+      filter(recipe => !!recipe),
       tap(recipe => this.recipe = recipe),
       switchMap(recipe => this.store.select(StepState.selectByRecipe).pipe(
         map(filterFn => filterFn(recipe.id))

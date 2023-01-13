@@ -26,13 +26,7 @@ export class RecipeState {
 
   @Selector()
   public static selectOne(state: RecipeModel): (id: number) => Recipe {
-    return (id: number): Recipe => {
-      const value = state.list.find(i => i.id === id);
-      if (!value) {
-        throw new Error('Recipe not found');
-      }
-      return value;
-    };
+    return (id: number): Recipe => state.list.find(i => i.id === id) as Recipe;
   }
 
 

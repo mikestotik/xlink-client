@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { AppRoutes, MainRoutes } from '../../../../config/routes.config';
 import { Device, DevicePayload } from '../../../../interfaces/device.interface';
 import { DeviceActions } from '../../../../models/device/store/device.actions';
 
@@ -28,6 +30,7 @@ export class DeviceDetailsComponent {
     public readonly device: Device,
     private readonly dialogRef: MatDialogRef<DeviceDetailsComponent>,
     private readonly fb: FormBuilder,
+    private readonly router: Router,
     private readonly store: Store) {
 
     this.form = this.createForm(device);
@@ -55,6 +58,7 @@ export class DeviceDetailsComponent {
     this.formSent = true;
     this.store.dispatch(new DeviceActions.Delete(this.device.id)).subscribe(() => {
       this.formSent = false;
+      this.router.navigate([ AppRoutes.App, MainRoutes.Devices ]);
       this.onClose(true);
     });
   }

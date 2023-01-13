@@ -1,33 +1,40 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Recipe, RecipePayload } from 'src/app/interfaces/recipe.interface';
 import { RecipeActions } from 'src/app/models/recipe/store/recipe.actions';
+import { AppRoutes, MainRoutes } from '../../../../config/routes.config';
+
 
 interface Form {
   title: FormControl<string>;
   desc: FormControl<string | undefined>;
 }
 
+
 @Component({
   templateUrl: './recipe-details.component.html',
-  styleUrls: ['./recipe-details.component.scss']
+  styleUrls: [ './recipe-details.component.scss' ]
 })
 export class RecipeDetailsComponent {
 
   public form!: FormGroup<Form>;
   public formSent!: boolean;
 
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public readonly recipe: Recipe,
     private readonly dialogRef: MatDialogRef<RecipeDetailsComponent>,
     private readonly fb: FormBuilder,
+    private readonly router: Router,
     private readonly store: Store) {
 
     this.form = this.createForm(recipe);
   }
+
 
   public onClose(result?: boolean): void {
     this.dialogRef.close(result);
@@ -50,6 +57,7 @@ export class RecipeDetailsComponent {
     this.formSent = true;
     this.store.dispatch(new RecipeActions.Delete(this.recipe.id)).subscribe(() => {
       this.formSent = false;
+      this.router.navigate([ AppRoutes.App, MainRoutes.Recipes ]);
       this.onClose(true);
     });
   }
@@ -57,8 +65,8 @@ export class RecipeDetailsComponent {
 
   private createForm(recipe?: Recipe): FormGroup<Form> {
     return this.fb.nonNullable.group({
-      title: [recipe ? recipe.title : '', [Validators.required]],
-      desc: [recipe ? recipe.desc : ''],
+      title: [ recipe ? recipe.title : '', [ Validators.required ] ],
+      desc: [ recipe ? recipe.desc : '' ]
     });
   }
 }

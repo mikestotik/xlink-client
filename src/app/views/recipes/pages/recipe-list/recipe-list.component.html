@@ -18,6 +18,7 @@
           <div class="list-item-payload">
             <div class="list-item-payload__title">{{ recipe.title }}</div>
             <div class="list-item-payload__subtitle">{{ recipe.desc }}</div>
+            <div class="list-item-payload__subtitle">Updated: {{ recipe.updated | date: 'dd MMM yyyy' }}</div>
           </div>
           <div class="list-item-menu" (click)="onEdit(recipe)">
             <i class="icon icon-more-horizontal"></i>

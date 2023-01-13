@@ -86,6 +86,16 @@ export class AssetDetailsComponent {
   }
 
 
+  public onDelete(): void {
+    this.formSent = true;
+
+    this.store.dispatch(new AssetActions.Delete(this.asset.id)).subscribe(() => {
+      this.formSent = false;
+      this.onClose(true);
+    });
+  }
+
+
   private createForm(asset?: Asset): FormGroup<Form> {
     return this.fb.nonNullable.group({
       title: [ asset ? asset.title : '', [ Validators.required ] ],
@@ -104,13 +114,4 @@ export class AssetDetailsComponent {
     });
   }
 
-
-  public onDelete(): void {
-    this.formSent = true;
-
-    this.store.dispatch(new AssetActions.Delete(this.asset.id)).subscribe(() => {
-      this.formSent = false;
-      this.onClose(true);
-    });
-  }
 }

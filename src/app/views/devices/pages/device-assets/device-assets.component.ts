@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { map, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { filter, map, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Asset } from '../../../../interfaces/asset.interface';
 import { Device } from '../../../../interfaces/device.interface';
 import { AssetState } from '../../../../models/asset/store/asset.state';
@@ -38,6 +38,7 @@ export class DeviceAssetsComponent implements OnInit, OnDestroy {
       switchMap(recipeId => this.store.select(DeviceState.selectOne).pipe(
         map(filterFn => filterFn(recipeId))
       )),
+      filter(device => !!device),
       tap(device => this.device = device),
       switchMap(device => this.store.select(AssetState.selectByDevice).pipe(
         map(filterFn => filterFn(device.id))

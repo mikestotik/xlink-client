@@ -26,13 +26,7 @@ export class DeviceState {
 
   @Selector()
   public static selectOne(state: DeviceModel): (id: number) => Device {
-    return (id: number): Device => {
-      const value = state.list.find(i => i.id === id);
-      if (!value) {
-        throw new Error('Device not found');
-      }
-      return value;
-    };
+    return (id: number): Device => state.list.find(i => i.id === id) as Device;
   }
 
 

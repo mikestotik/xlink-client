@@ -65,6 +65,16 @@ export class RecipeStepDetailsComponent {
   }
 
 
+  public onDelete(): void {
+    this.formSentDelete = true;
+
+    this.store.dispatch(new StepActions.Delete(this.step.id)).subscribe(() => {
+      this.formSentDelete = false;
+      this.onClose(true);
+    });
+  }
+
+
   private createForm(step?: Step): FormGroup<Form> {
     return this.fb.nonNullable.group({
       title: [ step ? step.title : '', [ Validators.required ] ],
@@ -74,13 +84,4 @@ export class RecipeStepDetailsComponent {
     });
   }
 
-
-  public onDelete(): void {
-    this.formSentDelete = true;
-
-    this.store.dispatch(new StepActions.Delete(this.step.id)).subscribe(() => {
-      this.formSentDelete = false;
-      this.onClose(true);
-    });
-  }
 }
