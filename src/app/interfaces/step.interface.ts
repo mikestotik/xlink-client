@@ -1,10 +1,18 @@
-import { StepStatus, StepType } from "../enums/step.enum";
+import { StepStatus, StepType } from '../enums/step.enum';
+import { Entity } from './entity.interface';
 
-export interface Step {
+
+export interface StepPayload {
+  order: number;
   title: string;
   desc?: string;
   timer?: Date;
-  status: StepStatus;
   type: StepType;
-  // rules
+  recipe: number;
+}
+
+
+export interface Step extends Entity, StepPayload {
+  status: StepStatus;
+  owner: number;
 }

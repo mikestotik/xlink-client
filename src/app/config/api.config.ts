@@ -12,8 +12,8 @@ export const ApiConfig = {
 
   GREENHOUSE: `${ CORE_API_URL }/greenhouse`,
   DEVICE: `${ CORE_API_URL }/device`,
-  RECIPE: `${ CORE_API_URL }/recipe`,
   ASSET: `${ CORE_API_URL }/asset`,
-  PROGRAM: `${ CORE_API_URL }/program`,
+  RECIPE: `${ CORE_API_URL }/recipe`,
+  STEP: `${ CORE_API_URL }/step`,
   RULE: `${ CORE_API_URL }/rule`,
 };

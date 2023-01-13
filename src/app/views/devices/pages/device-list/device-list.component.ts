@@ -47,12 +47,12 @@ export class DeviceListComponent implements OnInit, OnDestroy {
   }
 
 
-  public onAddDevice(): void {
+  public onAdd(): void {
     this.dialog.open(DeviceDetailsComponent);
   }
 
 
-  public onEditDevice(device: Device): void {
+  public onEdit(device: Device): void {
     this.dialog.open(DeviceDetailsComponent, { data: device });
   }
 }

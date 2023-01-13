@@ -13,15 +13,19 @@ import { MatTableModule } from '@angular/material/table';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
-import { RecipesRoutes } from './recipes.routing';
 import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.component';
+import { RecipeStepDetailsComponent } from './dialogs/recipe-step-details/recipe-step-details.component';
+import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
+import { RecipeWorkspaceComponent } from './pages/recipe-workspace/recipe-workspace.component';
+import { RecipesRoutes } from './recipes.routing';
 
 
 @NgModule({
   declarations: [
     RecipeListComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    RecipeWorkspaceComponent,
+    RecipeStepDetailsComponent
   ],
   exports: [
     RecipeDetailsComponent
@@ -42,4 +46,4 @@ import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.
     MatTableModule
   ]
 })
-export class RecipesModule { }
+export class RecipesModule {}

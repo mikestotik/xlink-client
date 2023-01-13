@@ -1,0 +1,45 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ffffff10;
+    padding: 8px 0;
+
+    &__title {
+      text-transform: uppercase;
+      opacity: 0.75;
+      font-size: 14px;
+    }
+
+    &__status {
+      margin-left: 8px;
+    }
+
+    &__actions {
+      margin-left: auto;
+
+      i {
+        opacity: 0.5;
+        margin-left: 8px;
+        cursor: pointer;
+        transition: opacity 256ms;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &.active {
+          opacity: 1;
+          color: var(--color-brand);
+        }
+      }
+    }
+  }
+
+  &-payload {
+  }
+}

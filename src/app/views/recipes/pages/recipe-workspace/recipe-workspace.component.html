@@ -1,0 +1,40 @@
+<div class="page-content">
+  <div class="page-content-header">
+    <div class="page-content-header__title">
+      <i class="icon icon-layout-list-thumb"></i>
+      <span>Steps</span>
+    </div>
+    <div class="page-content-header__actions">
+      <button mat-button color="primary" (click)="onAddStep()">
+        <i class="icon icon-plus"></i>
+        <span>Add Step</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="page-content-payload">
+    <div class="step" *ngFor="let step of steps" (click)="onEditStep(step)">
+      <div class="step-header">
+        <div class="step-header__title">{{ step.title }}</div>
+<!--        <div class="step-header__status">-->
+<!--          <div class="chip chip-sm">{{ step.status }}</div>-->
+<!--        </div>-->
+        <div class="step-header__actions">
+<!--          <i class="icon icon-control-play"></i>-->
+<!--          <i class="icon icon-control-pause"></i>-->
+<!--          <i class="icon icon-control-skip-backward"></i>-->
+<!--          <i class="icon icon-control-skip-forward"></i>-->
+<!--          <i class="icon icon-control-stop"></i>-->
+
+<!--          <i class="icon icon-plus"></i>-->
+
+          <i class="icon icon-more-horizontal-outline"></i>
+        </div>
+      </div>
+
+      <div class="step-payload">
+        ...
+      </div>
+    </div>
+  </div>
+</div>

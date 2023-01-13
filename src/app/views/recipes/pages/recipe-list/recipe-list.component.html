@@ -1,46 +1,100 @@
-<div class="page" *ngIf="recipes">
-    <div class="page-header">
-      <div class="page-header-info">
-        <div class="page-header-info__title">
-          <i class="icon icon-receipt"></i>
-          <span>Recipes</span>
-        </div>
-        <div class="page-header-info__sub-title">Items: {{ recipes.length }}</div>
-      </div>
-      <div class="page-header-actions">
-        <button mat-flat-button color="primary" (click)="onAdd()">+ Add Recipe</button>
-      </div>
+<div class="page" *ngIf="(recipes$ | async) as recipes">
+  <div class="page-sidebar">
+    <div class="page-sidebar__title">
+      <i class="icon icon-package"></i>
+      <span>Recipes</span>
     </div>
 
-    <div class="page-payload">
-      <table mat-table [dataSource]="recipes" class="elevation">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>#</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </ng-container>
+    <div class="page-sidebar__list">
+      <ng-container *ngIf="recipes.length">
+        <div class="list-item"
+             *ngFor="let recipe of recipes"
+             [routerLink]="recipe.id.toString()"
+             routerLinkActive="active"
+        >
+          <div class="list-item-icon">
+            <i class="icon icon-receipt"></i>
+          </div>
+          <div class="list-item-payload">
+            <div class="list-item-payload__title">{{ recipe.title }}</div>
+            <div class="list-item-payload__subtitle">{{ recipe.desc }}</div>
+          </div>
+          <div class="list-item-menu" (click)="onEdit(recipe)">
+            <i class="icon icon-more-horizontal"></i>
+          </div>
+        </div>
+      </ng-container>
 
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Title</th>
-          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
-        </ng-container>
+      <ng-container *ngIf="!recipes.length">
+        <app-empty-list title="No one recipe" subtitle='To add a recipe click on the button below'></app-empty-list>
+      </ng-container>
+    </div>
 
-        <ng-container matColumnDef="desc">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element">{{ element.desc ? element.desc : '-' }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="created">
-          <th mat-header-cell *matHeaderCellDef>Created</th>
-          <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="updated">
-          <th mat-header-cell *matHeaderCellDef>Updated</th>
-          <td mat-cell *matCellDef="let element">{{ element.updated | date }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columns"></tr>
-        <tr mat-row *matRowDef="let row; columns: columns;" (click)="onEdit(row)"></tr>
-      </table>
+    <div class="page-sidebar__controls">
+      <button mat-flat-button color="primary" (click)="onAdd()">
+        <i class="icon icon-plus"></i>
+        <span>Add Recipe</span>
+      </button>
     </div>
   </div>
+
+  <div class="page-payload">
+    <ng-container *ngIf="!selected">
+      <app-empty-list  title="No recipe selected" subtitle='Choose a recipe from the list'></app-empty-list>
+    </ng-container>
+
+    <ng-container *ngIf="selected">
+      <router-outlet></router-outlet>
+    </ng-container>
+  </div>
+</div>
+
+
+
+
+<!--<div class="page" *ngIf="recipes">-->
+<!--    <div class="page-header">-->
+<!--      <div class="page-header-info">-->
+<!--        <div class="page-header-info__title">-->
+<!--          <i class="icon icon-receipt"></i>-->
+<!--          <span>Recipes</span>-->
+<!--        </div>-->
+<!--        <div class="page-header-info__sub-title">Items: {{ recipes.length }}</div>-->
+<!--      </div>-->
+<!--      <div class="page-header-actions">-->
+<!--        <button mat-flat-button color="primary" (click)="onAdd()">+ Add Recipe</button>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="page-payload">-->
+<!--      <table mat-table [dataSource]="recipes" class="elevation">-->
+<!--        <ng-container matColumnDef="id">-->
+<!--          <th mat-header-cell *matHeaderCellDef>#</th>-->
+<!--          <td mat-cell *matCellDef="let element">{{ element.id }}</td>-->
+<!--        </ng-container>-->
+
+<!--        <ng-container matColumnDef="title">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Title</th>-->
+<!--          <td mat-cell *matCellDef="let element">{{ element.title }}</td>-->
+<!--        </ng-container>-->
+
+<!--        <ng-container matColumnDef="desc">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Description</th>-->
+<!--          <td mat-cell *matCellDef="let element">{{ element.desc ? element.desc : '-' }}</td>-->
+<!--        </ng-container>-->
+
+<!--        <ng-container matColumnDef="created">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Created</th>-->
+<!--          <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>-->
+<!--        </ng-container>-->
+
+<!--        <ng-container matColumnDef="updated">-->
+<!--          <th mat-header-cell *matHeaderCellDef>Updated</th>-->
+<!--          <td mat-cell *matCellDef="let element">{{ element.updated | date }}</td>-->
+<!--        </ng-container>-->
+
+<!--        <tr mat-header-row *matHeaderRowDef="columns"></tr>-->
+<!--        <tr mat-row *matRowDef="let row; columns: columns;" (click)="onEdit(row)"></tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->

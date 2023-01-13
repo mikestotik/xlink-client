@@ -23,6 +23,7 @@ import { AuthState } from './models/auth/store/auth.state';
 import { DeviceState } from './models/device/store/device.state';
 import { RecipeState } from './models/recipe/store/recipe.state';
 import { SettingsState } from './models/settings/store/settings.state';
+import { StepState } from './models/step/store/step.state';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { SettingsState } from './models/settings/store/settings.state';
       SettingsState,
       DeviceState,
       AssetState,
-      RecipeState
+      RecipeState,
+      StepState
     ], {
       developmentMode: !environment.production
     }),

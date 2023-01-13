@@ -1,0 +1,49 @@
+<form class="dialog" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="dialog-header">
+    <div class="dialog-header__title">{{ step ? 'Edit Step' : 'New Step'}}</div>
+
+    <div class="dialog-header__close" (click)="onClose()">
+      <i class="icon icon-close"></i>
+    </div>
+  </div>
+
+  <div class="dialog-content">
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.title as control" floatLabel="always">
+      <mat-label>Title</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-">
+      <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.desc as control" floatLabel="always">
+      <mat-label>Description</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-">
+    </mat-form-field>
+
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.type as control" floatLabel="always">
+      <mat-label>Type</mat-label>
+      <mat-select [formControl]="control" placeholder="-">
+        <mat-option *ngFor="let item of types" [value]="item.type">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.order as control" floatLabel="always">
+      <mat-label>Order</mat-label>
+      <input matInput appInput [formControl]="control" placeholder="-" type="number">
+      <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-flat-button type="button" *ngIf="step.id" (click)="onDelete()">
+      <div *ngIf="!formSentDelete">Delete</div>
+      <div *ngIf="formSentDelete" class="loader loader-invert"></div>
+    </button>
+
+    <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
+      <div *ngIf="!formSentSave">Save</div>
+      <div *ngIf="formSentSave" class="loader loader-invert"></div>
+    </button>
+  </div>
+</form>

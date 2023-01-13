@@ -1,35 +1,34 @@
 <form class="dialog" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="dialog-header">
       <div class="dialog-header__title">{{ recipe ? 'Edit Recipe' : 'New Recipe'}}</div>
-  
+
       <div class="dialog-header__close" (click)="onClose()">
         <i class="icon icon-close"></i>
       </div>
     </div>
-  
+
     <div class="dialog-content">
-      <mat-form-field *ngIf="form.controls.title as control" floatLabel="always">
+      <mat-form-field class="dialog-content__field" *ngIf="form.controls.title as control" floatLabel="always">
         <mat-label>Title</mat-label>
         <input matInput appInput [formControl]="control" placeholder="-">
         <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
       </mat-form-field>
-  
-      <mat-form-field *ngIf="form.controls.desc as control" floatLabel="always">
+
+      <mat-form-field class="dialog-content__field" *ngIf="form.controls.desc as control" floatLabel="always">
         <mat-label>Description</mat-label>
-        <input matInput appInput [formControl]="control" placeholder="-">
+        <textarea matInput appInput [formControl]="control" placeholder="-" rows="4"></textarea>
       </mat-form-field>
     </div>
-  
+
     <div class="dialog-actions">
-      <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
-        <div *ngIf="!formSent">{{ recipe ? 'Update' : 'Add'}}</div>
+      <button mat-flat-button type="button" *ngIf="recipe" (click)="onDelete()">
+        <div *ngIf="!formSent">Delete</div>
         <div *ngIf="formSent" class="loader loader-invert"></div>
       </button>
-  
-      <button mat-flat-button color="warn" type="button" *ngIf="recipe" (click)="onDelete()">
-        <div *ngIf="!formSent">Delete</div>
+
+      <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
+        <div *ngIf="!formSent">Save</div>
         <div *ngIf="formSent" class="loader loader-invert"></div>
       </button>
     </div>
   </form>
-  

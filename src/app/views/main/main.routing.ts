@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainRoutes } from '../../config/routes.config';
-import { AccountResolver } from '../../resolvers/account.resolver';
-import { DeviceResolver } from '../../resolvers/device.resolver';
+import { MainResolver } from '../../resolvers/main.resolver';
 import { MainComponent } from './main.component';
 
 
@@ -10,8 +9,7 @@ export const MainRouting: Routes = [
     path: '',
     component: MainComponent,
     resolve: [
-      AccountResolver,
-      DeviceResolver
+      MainResolver
     ],
     children: [
       {

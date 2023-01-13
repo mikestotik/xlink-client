@@ -20,7 +20,7 @@
             <div class="list-item-payload__subtitle">{{ device.desc }}</div>
             <div class="list-item-payload__subtitle">ID: {{ device.uuid }}</div>
           </div>
-          <div class="list-item-menu" (click)="onEditDevice(device)">
+          <div class="list-item-menu" (click)="onEdit(device)">
             <i class="icon icon-more-horizontal"></i>
           </div>
         </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="page-sidebar__controls">
-      <button mat-flat-button color="primary" (click)="onAddDevice()">
+      <button mat-flat-button color="primary" (click)="onAdd()">
         <i class="icon icon-plus"></i>
         <span>Add Device</span>
       </button>
