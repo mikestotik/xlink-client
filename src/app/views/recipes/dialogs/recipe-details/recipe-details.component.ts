@@ -11,7 +11,6 @@ interface Form {
 }
 
 @Component({
-  selector: 'app-recipe-details',
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.scss']
 })

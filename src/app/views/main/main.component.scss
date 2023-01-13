@@ -6,27 +6,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    //padding: 8px 0;
     box-shadow: 4px 4px 4px #00000020;
 
     &__brand {
       color: var(--color-brand);
+      font-size: 28px;
     }
 
     &__navigation {
       display: flex;
       flex-direction: column;
       align-items: center;
+      font-size: 22px;
     }
 
     &__exit {
       opacity: 0.75;
+      font-size: 22px;
     }
   }
 
   &-payload {
     flex: 1 1 auto;
-    //padding: 24px 28px;
   }
 }
 
@@ -36,10 +37,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: inherit;
   margin: 8px 0;
+  opacity: 0.75;
 
   &.active {
+    opacity: 1;
     color: var(--color-brand);
     background: var(--background-accent);
   }

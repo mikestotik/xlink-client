@@ -23,6 +23,9 @@ import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.
     RecipeListComponent,
     RecipeDetailsComponent
   ],
+  exports: [
+    RecipeDetailsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(RecipesRoutes),
@@ -36,7 +39,7 @@ import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.
     MatButtonToggleModule,
     MatRadioModule,
     MatMenuModule,
-    MatTableModule,
+    MatTableModule
   ]
 })
 export class RecipesModule { }

@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TagComponent } from './components/tag/tag.component';
 import { InputDirective } from './directives/input.directive';
 import { SnackSimpleComponent } from './snacks/snack-simple/snack-simple.component';
+import { EmptyListComponent } from './components/empty/empty-list.component';
 
 
 @NgModule({
@@ -16,12 +17,15 @@ import { SnackSimpleComponent } from './snacks/snack-simple/snack-simple.compone
   declarations: [
     TagComponent,
     SnackSimpleComponent,
-    InputDirective
+    InputDirective,
+    EmptyListComponent
   ],
   exports: [
     MatButtonModule,
     TagComponent,
-    InputDirective
+    InputDirective,
+    SnackSimpleComponent,
+    EmptyListComponent
   ]
 })
 export class SharedModule {}

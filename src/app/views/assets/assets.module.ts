@@ -22,6 +22,10 @@ import { AssetDeviceNamePipe } from './pipes/asset-device-name.pipe';
     AssetPermissionNamePipe,
     AssetDeviceNamePipe
   ],
+  exports: [
+    AssetDetailsComponent,
+    AssetListComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(AssetsRouting),

@@ -1,56 +1,11 @@
-import { ConnectorType } from '../enums/connector.enum';
-import { MQTTConnector } from './connector.interface';
 import { Entity } from './entity.interface';
-
-
-export enum RelayType {
-  Socket,
-  Pump,
-  Aerator,
-}
-
-
-export enum RelayValue {
-  Off,
-  On,
-}
-
-
-export interface Relay {
-  id: number;
-  type: RelayType;
-}
-
-
-export interface SensorValue {
-  id: number;
-  name: string;
-  min: number;
-  max: number;
-}
-
-
-export enum SensorType {
-  Light,
-  Air,
-  Soil,
-}
-
-
-export interface Sensor {
-  id: number;
-  type: SensorType;
-  values: SensorValue[];
-}
 
 
 export interface DevicePayload {
   uuid: string;
   title: string;
-  type: ConnectorType;
-  connector: MQTTConnector;
   desc?: string;
-  meta?: unknown;
+  icon?: string;
 }
 
 

@@ -1,58 +1,44 @@
-<div class="payload">
+<div class="payload" *ngIf="(devices$ | async) as devices">
   <div class="payload-sidebar">
     <div class="payload-sidebar__title">
+      <i class="icon icon-harddrives"></i>
       <span>Devices</span>
-      <i class="icon icon-search"></i>
     </div>
 
     <div class="payload-sidebar__list">
-      <div class="list-item active">
-        <div class="list-item-icon">
-          <i class="icon icon-harddrive"></i>
+      <ng-container *ngIf="devices.length">
+        <div class="list-item"
+             *ngFor="let device of devices"
+             [class.active]="device === selected"
+             (click)="onDevice(device)"
+        >
+          <div class="list-item-icon">
+            <i class="icon icon-harddrive"></i>
+          </div>
+          <div class="list-item-payload">
+            <div class="list-item-payload__title">{{ device.title }}</div>
+            <div class="list-item-payload__subtitle">{{ device.desc }}</div>
+            <div class="list-item-payload__subtitle">ID: {{ device.uuid }}</div>
+          </div>
+          <div class="list-item-menu" (click)="onEditDevice(device)">
+            <i class="icon icon-more-horizontal"></i>
+          </div>
         </div>
-        <div class="list-item-payload">
-          <div class="list-item-payload__title">Some device title</div>
-          <div class="list-item-payload__subtitle">ID: 6781327843782472</div>
-          <div class="list-item-payload__subtitle">Assets: 24</div>
-        </div>
-        <div class="list-item-menu">
-          <i class="icon icon-more-vertical"></i>
-        </div>
-      </div>
+      </ng-container>
 
-      <div class="list-item">
-        <div class="list-item-icon">
-          <i class="icon icon-harddrive"></i>
-        </div>
-        <div class="list-item-payload">
-          <div class="list-item-payload__title">Some device title</div>
-          <div class="list-item-payload__subtitle">ID: 6781327843782472</div>
-          <div class="list-item-payload__subtitle">Assets: 24</div>
-        </div>
-        <div class="list-item-menu">
-          <i class="icon icon-more-vertical"></i>
-        </div>
-      </div>
-
-      <div class="list-item">
-        <div class="list-item-icon">
-          <i class="icon icon-harddrive"></i>
-        </div>
-        <div class="list-item-payload">
-          <div class="list-item-payload__title">Some device title</div>
-          <div class="list-item-payload__subtitle">ID: 6781327843782472</div>
-          <div class="list-item-payload__subtitle">Assets: 24</div>
-        </div>
-        <div class="list-item-menu">
-          <i class="icon icon-more-vertical"></i>
-        </div>
-      </div>
+      <ng-container *ngIf="!devices.length">
+        <app-empty-list title="No one device" subtitle='To add a device click on the button below'></app-empty-list>
+      </ng-container>
     </div>
 
     <div class="payload-sidebar__controls">
-      <button mat-flat-button color="primary">+ Add Device</button>
+      <button mat-flat-button color="primary" (click)="onAddDevice()">+ Add Device</button>
     </div>
   </div>
 
-  <div class="payload-content"></div>
+  <div class="payload-content">
+    <ng-container *ngIf="!selected">
+      <app-empty-list  title="No device selected" subtitle='Choose a device from the list'></app-empty-list>
+    </ng-container >
+  </div>
 </div>

@@ -20,22 +20,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      opacity: 0.5;
     }
   }
 
   &-content {
     display: flex;
     flex-direction: column;
+
+    &__field {
+      margin-bottom: 12px;
+    }
   }
 
   &-actions {
-    margin-top: auto;
     display: flex;
-    flex-direction: column;
-    padding-top: 8px;
+    padding-top: 12px;
+    margin: 0 -4px;
 
     button {
-      margin-top: 12px;
+      margin: 0 4px;
+      flex: 1;
     }
   }
 }

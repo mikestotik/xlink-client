@@ -8,32 +8,33 @@
   </div>
 
   <div class="dialog-content">
-    <mat-form-field *ngIf="form.controls.title as control" floatLabel="always">
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.title as control" floatLabel="always">
       <mat-label>Title</mat-label>
       <input matInput appInput [formControl]="control" placeholder="-">
       <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
     </mat-form-field>
 
-    <mat-form-field *ngIf="form.controls.desc as control" floatLabel="always">
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.desc as control" floatLabel="always">
       <mat-label>Description</mat-label>
       <input matInput appInput [formControl]="control" placeholder="-">
     </mat-form-field>
 
-    <mat-form-field *ngIf="form.controls.deviceId as control" floatLabel="always">
-      <mat-label>DeviceID</mat-label>
+    <mat-form-field class="dialog-content__field" *ngIf="form.controls.uuid as control" floatLabel="always">
+      <mat-label>UUID</mat-label>
       <input matInput appInput [formControl]="control" placeholder="-">
       <mat-error *ngIf="control.hasError('required') && control.touched">Required field</mat-error>
+      <mat-hint>Unique device ID</mat-hint>
     </mat-form-field>
   </div>
 
   <div class="dialog-actions">
-    <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
-      <div *ngIf="!formSent">{{ device ? 'Update' : 'Add'}}</div>
+    <button mat-flat-button type="button" *ngIf="device" (click)="onDelete()">
+      <div *ngIf="!formSent">Delete</div>
       <div *ngIf="formSent" class="loader loader-invert"></div>
     </button>
 
-    <button mat-flat-button color="warn" type="button" *ngIf="device" (click)="onDelete()">
-      <div *ngIf="!formSent">Delete</div>
+    <button [disabled]="form.invalid" mat-flat-button color="primary" type="submit">
+      <div *ngIf="!formSent">Save</div>
       <div *ngIf="formSent" class="loader loader-invert"></div>
     </button>
   </div>

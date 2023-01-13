@@ -28,6 +28,8 @@ i[matSuffix] {
     -webkit-text-fill-color: var(--input-autofill-text-color);
   }
 
+
+
   // Buttons
   // ********************
   .mdc-button .mdc-button__label {
@@ -55,6 +57,11 @@ i[matSuffix] {
   .mat-mdc-form-field-error-wrapper {
     position: relative;
     padding: 0;
+    margin-top: 6px;
+  }
+
+  .mat-mdc-form-field-bottom-align::before {
+    display: block;
   }
 
   mat-hint {

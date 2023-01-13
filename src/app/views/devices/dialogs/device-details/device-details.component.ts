@@ -7,14 +7,13 @@ import { DeviceActions } from '../../../../models/device/store/device.actions';
 
 
 interface Form {
+  uuid: FormControl<string>;
   title: FormControl<string>;
-  deviceId: FormControl<string>;
   desc: FormControl<string | undefined>;
 }
 
 
 @Component({
-  selector: 'app-device-create',
   templateUrl: './device-details.component.html',
   styleUrls: ['./device-details.component.scss']
 })
@@ -63,8 +62,8 @@ export class DeviceDetailsComponent {
 
   private createForm(device?: Device): FormGroup<Form> {
     return this.fb.nonNullable.group({
+      uuid: [device ? device.uuid : '', [Validators.required]],
       title: [device ? device.title : '', [Validators.required]],
-      deviceId: [device ? device.uuid : '', [Validators.required]],
       desc: [device ? device.desc : ''],
     });
   }

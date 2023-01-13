@@ -9,7 +9,6 @@ import { AssetDetailsComponent } from '../../dialogs/asset-details/asset-details
 
 
 @Component({
-  selector: 'app-asset-list',
   templateUrl: './asset-list.component.html',
   styleUrls: ['./asset-list.component.scss']
 })
