@@ -2,21 +2,22 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Subject, takeUntil } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 import { Asset } from '../../../../interfaces/asset.interface';
 import { AssetState } from '../../../../models/asset/store/asset.state';
 import { AssetDetailsComponent } from '../../dialogs/asset-details/asset-details.component';
 
 
 @Component({
-  templateUrl: './asset-list.component.html',
-  styleUrls: ['./asset-list.component.scss']
+  templateUrl: './device-assets.component.html',
+  styleUrls: [ './device-assets.component.scss' ]
 })
-export class AssetListComponent implements OnInit, OnDestroy {
+export class DeviceAssetsComponent implements OnInit, OnDestroy {
 
   public assets!: Asset[];
-  public columns: string[] = ['id', 'title', 'desc', 'unit', 'permission', 'type', 'created', 'updated', 'link', 'device'];
+  public columns: string[] = [ 'id', 'title', 'desc', 'unit', 'permission', 'type', 'created', 'updated', 'link' ];
 
+  private deviceId!: string | null;
   private destroy$ = new Subject<void>();
 
 
@@ -28,7 +29,10 @@ export class AssetListComponent implements OnInit, OnDestroy {
 
 
   public ngOnInit(): void {
-    this.store.select(AssetState.selectAll).pipe(
+    this.deviceId = this.route.snapshot.paramMap.get('id');
+
+    this.store.select(AssetState.selectByDevice).pipe(
+      map(filterFn => filterFn(Number(this.deviceId))),
       takeUntil(this.destroy$)
     )
       .subscribe(assets => this.assets = assets);
@@ -42,7 +46,11 @@ export class AssetListComponent implements OnInit, OnDestroy {
 
 
   public onAdd(): void {
-    this.dialog.open(AssetDetailsComponent);
+    this.dialog.open(AssetDetailsComponent, {
+      data: {
+        device: this.deviceId
+      }
+    });
   }
 
 

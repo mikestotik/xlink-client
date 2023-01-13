@@ -15,7 +15,7 @@
   --color-orange: #df7921;
   --color-green: #43a047;
 
-  --button-height: 48px;
+  --button-height: 44px;
   --button-border-radius: 4px;
 
   --dialog-border-radius: 4px;
@@ -40,4 +40,7 @@
   // Input
   --input-autofill-background: #2a2b2e;
   --input-autofill-text-color: #d4d5d9;
+
+  --box-shadow-color-5: rgb(0 0 0 / 5%);
+  --box-shadow-color-10: rgb(0 0 0 / 10%);
 }

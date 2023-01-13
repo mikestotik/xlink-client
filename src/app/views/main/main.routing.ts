@@ -24,10 +24,6 @@ export const MainRouting: Routes = [
         loadChildren: () => import('../devices/devices.module').then(m => m.DevicesModule)
       },
       {
-        path: MainRoutes.Assets,
-        loadChildren: () => import('../assets/assets.module').then(m => m.AssetsModule)
-      },
-      {
         path: MainRoutes.Recipes,
         loadChildren: () => import('../recipes/recipes.module').then(m => m.RecipesModule)
       },

@@ -36,6 +36,12 @@ export class AssetState {
   }
 
 
+  @Selector()
+  public static selectByDevice(state: AssetModel): (deviceId: number) => Asset[] {
+    return (deviceId: number): Asset[] => state.list.filter(i => i.device === deviceId);
+  }
+
+
   constructor(
     private readonly service: AssetService) {
   }

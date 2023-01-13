@@ -14,8 +14,6 @@ export class AssetPermissionNamePipe implements PipeTransform {
           return 'Read';
         case AssetPermission.Write:
           return 'Write';
-        case AssetPermission.ReadAndWrite:
-          return 'ReadAndWrite';
       }
     }
     if (dict === 'type') {
@@ -24,8 +22,12 @@ export class AssetPermissionNamePipe implements PipeTransform {
           return 'Integer';
         case DataType.Double:
           return 'Double';
-        case DataType.String:
-          return 'String';
+        case DataType.Text:
+          return 'Text';
+        case DataType.Boolean:
+          return 'Boolean';
+        case DataType.JSON:
+          return 'JSON';
       }
     }
     return '';

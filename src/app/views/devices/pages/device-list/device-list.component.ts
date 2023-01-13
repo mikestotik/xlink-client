@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Device } from '../../../../interfaces/device.interface';
 import { DeviceState } from '../../../../models/device/store/device.state';
+import { routerNavigationEnd } from '../../../../utils/router.utils';
 import { DeviceDetailsComponent } from '../../dialogs/device-details/device-details.component';
 
 
@@ -15,18 +17,28 @@ export class DeviceListComponent implements OnInit, OnDestroy {
 
   @Select(DeviceState.selectAll)
   public devices$!: Observable<Device[]>;
-  public selected!: Device;
+  public selected!: boolean;
 
   private destroy$ = new Subject<void>();
 
 
   constructor(
+    private readonly router: Router,
+    private readonly routes: ActivatedRoute,
     private readonly store: Store,
     private readonly dialog: MatDialog) {
   }
 
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {
+    this.selected = !!this.routes.children.length;
+
+    routerNavigationEnd(this.router).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(
+      () => this.selected = !!this.routes.children.length
+    );
+  }
 
 
   public ngOnDestroy(): void {
@@ -42,10 +54,5 @@ export class DeviceListComponent implements OnInit, OnDestroy {
 
   public onEditDevice(device: Device): void {
     this.dialog.open(DeviceDetailsComponent, { data: device });
-  }
-
-
-  public onDevice(device: Device): void {
-    this.selected = device;
   }
 }

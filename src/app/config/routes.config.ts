@@ -18,9 +18,7 @@ export enum ErrorRoutes {
 
 
 export enum MainRoutes {
-  Greenhouse = 'greenhouse',
   Devices = 'devices',
-  Assets = 'assets',
   Recipes = 'recipes',
   Settings = 'settings',
 }

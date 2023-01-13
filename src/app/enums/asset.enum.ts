@@ -1,15 +1,15 @@
 export enum DataType {
   Integer,
   Double,
-  String,
   Boolean,
+  Text,
+  JSON,
 }
 
 
 export enum AssetPermission {
   Read,
   Write,
-  ReadAndWrite,
 }
 
 
@@ -38,13 +38,13 @@ export enum AssetUnit {
   Tonnes = 't',
   Ton = 't',
 
-  liters = 'l',
-  milliliters = 'ml',
-  kiloliters = 'kl',
-  fluidOunce = 'fl oz',
-  cup = 'c',
-  pint = 'pt',
-  quart = 'qt',
+  Liters = 'l',
+  Milliliters = 'ml',
+  Kiloliters = 'kl',
+  FluidOunce = 'fl oz',
+  Cup = 'c',
+  Pint = 'pt',
+  Quart = 'qt',
   Gallon = 'gal',
 }
 

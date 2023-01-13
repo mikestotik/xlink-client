@@ -1,16 +1,16 @@
-<div class="payload" *ngIf="(devices$ | async) as devices">
-  <div class="payload-sidebar">
-    <div class="payload-sidebar__title">
+<div class="page" *ngIf="(devices$ | async) as devices">
+  <div class="page-sidebar">
+    <div class="page-sidebar__title">
       <i class="icon icon-harddrives"></i>
       <span>Devices</span>
     </div>
 
-    <div class="payload-sidebar__list">
+    <div class="page-sidebar__list">
       <ng-container *ngIf="devices.length">
         <div class="list-item"
              *ngFor="let device of devices"
-             [class.active]="device === selected"
-             (click)="onDevice(device)"
+             [routerLink]="device.id.toString()"
+             routerLinkActive="active"
         >
           <div class="list-item-icon">
             <i class="icon icon-harddrive"></i>
@@ -31,14 +31,18 @@
       </ng-container>
     </div>
 
-    <div class="payload-sidebar__controls">
+    <div class="page-sidebar__controls">
       <button mat-flat-button color="primary" (click)="onAddDevice()">+ Add Device</button>
     </div>
   </div>
 
-  <div class="payload-content">
+  <div class="page-payload">
     <ng-container *ngIf="!selected">
       <app-empty-list  title="No device selected" subtitle='Choose a device from the list'></app-empty-list>
-    </ng-container >
+    </ng-container>
+
+    <ng-container *ngIf="selected">
+      <router-outlet></router-outlet>
+    </ng-container>
   </div>
 </div>

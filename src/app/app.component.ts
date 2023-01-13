@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
-import { filter, map, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { WebsocketEndpoints } from './config/websocket.config';
+import { routerNavigationEnd } from './utils/router.utils';
 
 
 @Component({
@@ -22,13 +23,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   public ngOnInit(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(event => event as NavigationEnd),
+    routerNavigationEnd(this.router).pipe(
       takeUntil(this.destroy$)
-    ).subscribe(event => {
-      this.socket.emit(WebsocketEndpoints.TRACKER, event.urlAfterRedirects);
-    });
+    ).subscribe(
+      navEnd => this.socket.emit(WebsocketEndpoints.TRACKER, navEnd.urlAfterRedirects)
+    );
   }
 
 
