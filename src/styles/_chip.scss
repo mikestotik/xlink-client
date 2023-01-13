@@ -5,8 +5,10 @@
   height: 24px;
   border-radius: 16px;
   padding: 0 16px;
-  background: var(--color-grey-dark);
+  border-color: var(--color-grey);
+  color: var(--color-grey);
   font-size: 13px;
+  border: 1px solid;
 
   i {
     margin-right: 8px;
@@ -14,14 +16,17 @@
   }
 
   &-success {
-    background: var(--color-success);
+    border-color: var(--color-success);
+    color: var(--color-success);
   }
 
   &-warn {
-    background: var(--color-warn);
+    border-color: var(--color-warn);
+    color: var(--color-warn);
   }
 
   &-danger {
-    background: var(--color-danged);
+    border-color: var(--color-danged);
+    color: var(--color-danged);
   }
 }
