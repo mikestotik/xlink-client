@@ -47,7 +47,7 @@
   &-actions {
     display: flex;
     flex-direction: column;
-    margin-top: 4px;
+    margin-top: 16px;
 
     button {
       display: flex;
@@ -60,7 +60,7 @@
     font-size: 14px;
     background: var(--background-accent);
     border-radius: 4px;
-    padding: 20px 24px;
+    padding: 16px 24px;
     margin-top: 24px;
   }
 }
