@@ -16,18 +16,20 @@ import { SharedModule } from '../shared/shared.module';
 import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.component';
 import { RecipeStepDetailsComponent } from './dialogs/recipe-step-details/recipe-step-details.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
-import { RecipeWorkspaceComponent } from './pages/recipe-workspace/recipe-workspace.component';
+import { RecipeRulesComponent } from './pages/recipe-rules/recipe-rules.component';
 import { RecipesRoutes } from './recipes.routing';
 import { StepStatusPipe } from './pipes/step-status.pipe';
+import { RecipeCreateRuleComponent } from './dialogs/recipe-create-rule/recipe-create-rule.component';
 
 
 @NgModule({
   declarations: [
     RecipeListComponent,
     RecipeDetailsComponent,
-    RecipeWorkspaceComponent,
+    RecipeRulesComponent,
     RecipeStepDetailsComponent,
-    StepStatusPipe
+    StepStatusPipe,
+    RecipeCreateRuleComponent
   ],
   exports: [
     RecipeDetailsComponent

@@ -8,14 +8,15 @@ import { Step } from '../../../../interfaces/step.interface';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
+import { RecipeCreateRuleComponent } from '../../dialogs/recipe-create-rule/recipe-create-rule.component';
 import { RecipeStepDetailsComponent } from '../../dialogs/recipe-step-details/recipe-step-details.component';
 
 
 @Component({
-  templateUrl: './recipe-workspace.component.html',
-  styleUrls: [ './recipe-workspace.component.scss' ]
+  templateUrl: './recipe-rules.component.html',
+  styleUrls: [ './recipe-rules.component.scss' ]
 })
-export class RecipeWorkspaceComponent implements OnInit, OnDestroy {
+export class RecipeRulesComponent implements OnInit, OnDestroy {
 
   public recipe!: Recipe;
   public steps!: Step[];
@@ -78,7 +79,11 @@ export class RecipeWorkspaceComponent implements OnInit, OnDestroy {
 
 
   public onAddRule(step: Step): void {
-    console.log(step);
+    this.dialog.open(RecipeCreateRuleComponent, {
+      data: {
+        step: step
+      }
+    });
   }
 }
 
