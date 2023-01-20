@@ -5,7 +5,8 @@
   overflow: hidden;
   transition: background 256ms;
   margin-bottom: 1px;
-  padding: 16px 24px;
+  padding: 16px 20px;
+  min-height: 80px;
 
   &:before {
     content: '';
