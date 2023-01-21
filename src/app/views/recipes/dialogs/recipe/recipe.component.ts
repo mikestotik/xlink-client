@@ -15,10 +15,10 @@ interface Form {
 
 
 @Component({
-  templateUrl: './recipe-details.component.html',
-  styleUrls: [ './recipe-details.component.scss' ]
+  templateUrl: './recipe.component.html',
+  styleUrls: [ './recipe.component.scss' ]
 })
-export class RecipeDetailsComponent {
+export class RecipeComponent {
 
   public form!: FormGroup<Form>;
   public formSent!: boolean;
@@ -27,7 +27,7 @@ export class RecipeDetailsComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public readonly recipe: Recipe,
-    private readonly dialogRef: MatDialogRef<RecipeDetailsComponent>,
+    private readonly dialogRef: MatDialogRef<RecipeComponent>,
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly store: Store) {

@@ -17,10 +17,10 @@ interface Form {
 
 
 @Component({
-  templateUrl: './recipe-step-details.component.html',
-  styleUrls: [ './recipe-step-details.component.scss' ]
+  templateUrl: './recipe-step.component.html',
+  styleUrls: [ './recipe-step.component.scss' ]
 })
-export class RecipeStepDetailsComponent {
+export class RecipeStepComponent {
 
   public form!: FormGroup<Form>;
   public formSentSave!: boolean;
@@ -35,7 +35,7 @@ export class RecipeStepDetailsComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public readonly step: Step,
-    private readonly dialogRef: MatDialogRef<RecipeStepDetailsComponent>,
+    private readonly dialogRef: MatDialogRef<RecipeStepComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 

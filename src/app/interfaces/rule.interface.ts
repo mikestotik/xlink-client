@@ -1,3 +1,6 @@
+import { Entity } from './entity.interface';
+
+
 export interface RulePayload {
   title: string;
   desc?: string;
@@ -5,9 +8,6 @@ export interface RulePayload {
 }
 
 
-export interface Rule extends RulePayload {
-  id: number;
-  created: Date;
-  updated: Date;
+export interface Rule extends Entity, RulePayload {
   step: number;
 }

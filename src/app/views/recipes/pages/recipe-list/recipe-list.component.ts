@@ -6,7 +6,7 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/recipe.interface';
 import { RecipeState } from 'src/app/models/recipe/store/recipe.state';
 import { routerNavigationEnd } from '../../../../utils/router.utils';
-import { RecipeDetailsComponent } from '../../dialogs/recipe-details/recipe-details.component';
+import { RecipeComponent } from '../../dialogs/recipe/recipe.component';
 
 
 @Component({
@@ -48,11 +48,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
 
   public onAdd(): void {
-    this.dialog.open(RecipeDetailsComponent);
+    this.dialog.open(RecipeComponent);
   }
 
 
   public onEdit(recipe: Recipe): void {
-    this.dialog.open(RecipeDetailsComponent, { data: recipe });
+    this.dialog.open(RecipeComponent, { data: recipe });
   }
 }

@@ -13,11 +13,10 @@ interface Form {
 
 
 @Component({
-  selector: 'app-recipe-create-rule',
-  templateUrl: './recipe-create-rule.component.html',
-  styleUrls: [ './recipe-create-rule.component.scss' ]
+  templateUrl: './recipe-rule.component.html',
+  styleUrls: [ './recipe-rule.component.scss' ]
 })
-export class RecipeCreateRuleComponent {
+export class RecipeRuleComponent {
 
   public form!: FormGroup<Form>;
   public formSent!: boolean;
@@ -26,7 +25,7 @@ export class RecipeCreateRuleComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public readonly rule: Rule,
-    private readonly dialogRef: MatDialogRef<RecipeCreateRuleComponent>,
+    private readonly dialogRef: MatDialogRef<RecipeRuleComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 

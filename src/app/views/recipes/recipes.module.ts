@@ -13,26 +13,28 @@ import { MatTableModule } from '@angular/material/table';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { RecipeDetailsComponent } from './dialogs/recipe-details/recipe-details.component';
-import { RecipeStepDetailsComponent } from './dialogs/recipe-step-details/recipe-step-details.component';
+import { RecipeComponent } from './dialogs/recipe/recipe.component';
+import { RecipeRuleTriggerComponent } from './dialogs/recipe-rule-trigger/recipe-rule-trigger.component';
+import { RecipeRuleComponent } from './dialogs/recipe-rule/recipe-rule.component';
+import { RecipeStepComponent } from './dialogs/recipe-step/recipe-step.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { RecipeRulesComponent } from './pages/recipe-rules/recipe-rules.component';
-import { RecipesRoutes } from './recipes.routing';
 import { StepStatusPipe } from './pipes/step-status.pipe';
-import { RecipeCreateRuleComponent } from './dialogs/recipe-create-rule/recipe-create-rule.component';
+import { RecipesRoutes } from './recipes.routing';
 
 
 @NgModule({
   declarations: [
     RecipeListComponent,
-    RecipeDetailsComponent,
+    RecipeComponent,
     RecipeRulesComponent,
-    RecipeStepDetailsComponent,
+    RecipeStepComponent,
     StepStatusPipe,
-    RecipeCreateRuleComponent
+    RecipeRuleComponent,
+    RecipeRuleTriggerComponent
   ],
   exports: [
-    RecipeDetailsComponent
+    RecipeComponent
   ],
   imports: [
     CommonModule,

@@ -12,8 +12,9 @@ import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
 import { SortUtils } from '../../../../utils/sort.utils';
-import { RecipeCreateRuleComponent } from '../../dialogs/recipe-create-rule/recipe-create-rule.component';
-import { RecipeStepDetailsComponent } from '../../dialogs/recipe-step-details/recipe-step-details.component';
+import { RecipeRuleTriggerComponent } from '../../dialogs/recipe-rule-trigger/recipe-rule-trigger.component';
+import { RecipeRuleComponent } from '../../dialogs/recipe-rule/recipe-rule.component';
+import { RecipeStepComponent } from '../../dialogs/recipe-step/recipe-step.component';
 
 
 @Component({
@@ -65,7 +66,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onAddStep(): void {
-    this.dialog.open(RecipeStepDetailsComponent, {
+    this.dialog.open(RecipeStepComponent, {
       data: {
         recipe: this.recipe.id
       }
@@ -74,7 +75,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onEditStep(step: Step): void {
-    this.dialog.open(RecipeStepDetailsComponent, { data: step });
+    this.dialog.open(RecipeStepComponent, { data: step });
   }
 
 
@@ -86,7 +87,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onAddRule(step: Step): void {
-    this.dialog.open(RecipeCreateRuleComponent, {
+    this.dialog.open(RecipeRuleComponent, {
       data: {
         step: step.id
       }
@@ -95,14 +96,9 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onEditRule(rule: Rule): void {
-    this.dialog.open(RecipeCreateRuleComponent, {
+    this.dialog.open(RecipeRuleComponent, {
       data: rule
     });
-  }
-
-
-  public onAddTrigger(rule: Rule): void {
-    console.log(rule);
   }
 
 
@@ -111,4 +107,21 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
       disabled: !rule.disabled
     }));
   }
+
+
+  public onAddTrigger(rule: Rule): void {
+    this.dialog.open(RecipeRuleTriggerComponent, {
+      data: {
+        rule: rule.id
+      }
+    });
+  }
+
+
+  public onEditTrigger(trigger: Rule): void {
+    this.dialog.open(RecipeRuleTriggerComponent, {
+      data: trigger
+    });
+  }
+
 }

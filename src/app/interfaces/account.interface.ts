@@ -1,4 +1,5 @@
 import { Languages } from "../enums/language.enum";
+import { Entity } from './entity.interface';
 
 
 export interface UserCredentials {
@@ -24,23 +25,11 @@ export interface Role {
 }
 
 
-export interface User {
-  id: number;
+export interface User extends Entity {
   email: string;
   username: string;
   fullName?: string;
   lang: Languages;
   logo?: string;
   roles: Role[];
-  created: Date;
-  updated: Date;
-}
-
-
-export interface SharedUser {
-  id: number;
-  email: string;
-  username: string;
-  fullName?: string;
-  logo?: string;
 }
