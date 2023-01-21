@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
-import { filter, map, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Recipe } from '../../../../interfaces/recipe.interface';
+import { Rule } from '../../../../interfaces/rule.interface';
 import { Step } from '../../../../interfaces/step.interface';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
+import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
 import { RecipeCreateRuleComponent } from '../../dialogs/recipe-create-rule/recipe-create-rule.component';
@@ -17,6 +19,9 @@ import { RecipeStepDetailsComponent } from '../../dialogs/recipe-step-details/re
   styleUrls: [ './recipe-rules.component.scss' ]
 })
 export class RecipeRulesComponent implements OnInit, OnDestroy {
+
+  @Select(RuleState.selectByStep)
+  public stepRules$!: Observable<(stepId: number) => Rule[]>;
 
   public recipe!: Recipe;
   public steps!: Step[];
@@ -81,8 +86,15 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
   public onAddRule(step: Step): void {
     this.dialog.open(RecipeCreateRuleComponent, {
       data: {
-        step: step
+        step: step.id
       }
+    });
+  }
+
+
+  public onEditRule(rule: Rule): void {
+    this.dialog.open(RecipeCreateRuleComponent, {
+      data: rule
     });
   }
 }

@@ -1,13 +1,13 @@
 .step {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 
   &-header {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ffffff10;
-    padding: 12px 0;
+    padding: 8px 0;
 
     &__title {
       opacity: 0.75;
@@ -28,7 +28,7 @@
   }
 
   &-payload {
-    padding: 8px;
+    padding: 8px 0;
   }
 }
 
@@ -55,14 +55,27 @@
   }
 }
 
-.add-rule-action {
+
+.rule {
   display: flex;
-  align-items: center;
-  color: var(--color-brand);
-  font-size: 14px;
-  cursor: pointer;
-  text-transform: uppercase;
-  i {
-    margin-right: 8px;
+  flex-direction: column;
+  background: var(--color-dark-primary);
+  margin-bottom: 8px;
+  border-radius: 4px;
+  padding: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+
+    &__title {
+      i {
+        margin-right: 8px;
+      }
+    }
   }
 }

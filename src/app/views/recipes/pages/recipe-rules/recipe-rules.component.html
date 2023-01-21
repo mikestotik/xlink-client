@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="page-content-payload">
+  <div class="page-content-payload" *ngIf="(stepRules$ | async) as stepRules">
     <div class="step" *ngFor="let step of steps">
       <div class="step-header">
         <div class="step-header__title">{{ step.title }}</div>
@@ -32,6 +32,11 @@
             <span>Turn {{ step.disabled ? 'On' : 'Off' }}</span>
           </div>
 
+          <div class="step-action" (click)="onAddRule(step)">
+            <i class="icon icon-plus"></i>
+            <span>Add Rule</span>
+          </div>
+
           <div class="step-action" (click)="onEditStep(step)">
             <i class="icon icon-pencil"></i>
             <span>Edit</span>
@@ -40,9 +45,13 @@
       </div>
 
       <div class="step-payload">
-        <div class="add-rule-action" (click)="onAddRule(step)">
-          <i class="icon icon-plus"></i>
-          <span>Add Rule</span>
+        <div class="rule" *ngFor="let rule of stepRules(step.id)" (click)="onEditRule(rule)">
+          <div class="rule-header">
+            <div class="rule-header__title">
+              <i class="icon icon-bookmark"></i>
+              <span>{{ rule.title }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { AccountActions } from '../models/account/store/account.actions';
 import { AssetActions } from '../models/asset/store/asset.actions';
 import { DeviceActions } from '../models/device/store/device.actions';
 import { RecipeActions } from '../models/recipe/store/recipe.actions';
+import { RuleActions } from '../models/rule/store/rule.actions';
 import { StepActions } from '../models/step/store/step.actions';
 
 
@@ -25,7 +26,8 @@ export class MainResolver implements Resolve<boolean> {
       new DeviceActions.GetAll(),
       new AssetActions.GetAll(),
       new RecipeActions.GetAll(),
-      new StepActions.GetAll()
+      new StepActions.GetAll(),
+      new RuleActions.GetAll(),
     ]);
   }
 }
