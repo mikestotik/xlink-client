@@ -28,7 +28,7 @@
   }
 
   &-payload {
-    padding: 8px 0;
+    padding: 12px 0;
   }
 }
 
@@ -72,10 +72,54 @@
     display: flex;
     align-items: center;
 
-    &__title {
-      i {
+    &-title {
+      display: flex;
+      align-items: center;
+
+      &__icon {
         margin-right: 8px;
+        opacity: 0.5;
+      }
+
+      &__text {
+      }
+
+      &__edit {
+        margin-left: 8px;
+        opacity: 0.25;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+          color: var(--color-brand);
+        }
       }
     }
+
+    &-switch {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      opacity: 0.33;
+
+      i {
+        cursor: pointer;
+      }
+
+      &.active {
+        color: var(--color-brand);
+        opacity: 1;
+      }
+    }
+  }
+
+  &-desc {
+    opacity: 0.5;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  &-payload {
+    margin-top: 8px;
   }
 }

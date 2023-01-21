@@ -45,12 +45,26 @@
       </div>
 
       <div class="step-payload">
-        <div class="rule" *ngFor="let rule of stepRules(step.id)" (click)="onEditRule(rule)">
+        <div class="rule" *ngFor="let rule of stepRules(step.id)">
           <div class="rule-header">
-            <div class="rule-header__title">
-              <i class="icon icon-bookmark"></i>
-              <span>{{ rule.title }}</span>
+            <div class="rule-header-title">
+              <i class="rule-header-title__icon icon icon-bookmark"></i>
+              <span class="rule-header-title__text">{{ rule.title }}</span>
+              <i class="rule-header-title__edit icon icon-pencil" (click)="onEditRule(rule)"></i>
             </div>
+
+            <div class="rule-header-switch" [class.active]="!rule.disabled" (click)="onSwitchRule(rule)">
+              <i class="icon icon-power-off"></i>
+            </div>
+          </div>
+
+          <div class="rule-desc">{{ rule.desc ? rule.desc : 'No description' }}</div>
+
+          <div class="rule-payload">
+            <button mat-button color="primary" (click)="onAddTrigger(rule)">
+              <i class="icon icon-plus"></i>
+              <span>Add Trigger</span>
+            </button>
           </div>
         </div>
       </div>

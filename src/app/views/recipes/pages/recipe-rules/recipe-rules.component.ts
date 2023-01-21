@@ -7,6 +7,7 @@ import { Recipe } from '../../../../interfaces/recipe.interface';
 import { Rule } from '../../../../interfaces/rule.interface';
 import { Step } from '../../../../interfaces/step.interface';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
+import { RuleActions } from '../../../../models/rule/store/rule.actions';
 import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
@@ -96,6 +97,18 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
     this.dialog.open(RecipeCreateRuleComponent, {
       data: rule
     });
+  }
+
+
+  public onAddTrigger(rule: Rule): void {
+    console.log(rule);
+  }
+
+
+  public onSwitchRule(rule: Rule): void {
+    this.store.dispatch(new RuleActions.Update(rule.id, {
+      disabled: !rule.disabled
+    }))
   }
 }
 
