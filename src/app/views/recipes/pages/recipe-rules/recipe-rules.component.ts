@@ -11,6 +11,7 @@ import { RuleActions } from '../../../../models/rule/store/rule.actions';
 import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
+import { SortUtils } from '../../../../utils/sort.utils';
 import { RecipeCreateRuleComponent } from '../../dialogs/recipe-create-rule/recipe-create-rule.component';
 import { RecipeStepDetailsComponent } from '../../dialogs/recipe-step-details/recipe-step-details.component';
 
@@ -50,7 +51,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
       switchMap(recipe => this.store.select(StepState.selectByRecipe).pipe(
         map(filterFn => filterFn(recipe.id))
       )),
-      map(steps => steps.sort(compareByOrder)),
+      map(steps => steps.sort(SortUtils.byOrder)),
       takeUntil(this.destroy$)
     )
       .subscribe(steps => this.steps = steps);
@@ -110,15 +111,4 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
       disabled: !rule.disabled
     }))
   }
-}
-
-
-function compareByOrder(a: Step, b: Step) {
-  if (a.order < b.order) {
-    return -1;
-  }
-  if (a.order > b.order) {
-    return 1;
-  }
-  return 0;
 }
