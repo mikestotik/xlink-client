@@ -68,4 +68,5 @@ export class SettingsAccountComponent implements OnInit {
       lang: [ user.lang ]
     });
   }
+
 }

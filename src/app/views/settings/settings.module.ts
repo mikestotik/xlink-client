@@ -7,13 +7,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SettingsAccountComponent } from './pages/settings-account/settings-account.component';
-import { SettingsComponent } from './settings.component';
+import { SettingsListComponent } from './pages/settings-list/settings-list.component';
 import { SettingsRouting } from './settings.routing';
 
 
 @NgModule({
   declarations: [
-    SettingsComponent,
+    SettingsListComponent,
     SettingsAccountComponent
   ],
   exports: [

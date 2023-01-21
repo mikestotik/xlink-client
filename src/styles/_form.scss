@@ -11,3 +11,12 @@
 textarea {
   padding: 6px 0;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__field {
+    margin-bottom: 16px;
+  }
+}

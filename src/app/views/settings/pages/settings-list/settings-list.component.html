@@ -1,0 +1,24 @@
+<div class="page">
+  <div class="page-sidebar">
+    <div class="page-sidebar__title">
+      <i class="icon icon-settings"></i>
+      <span>Settings</span>
+    </div>
+
+    <div class="page-sidebar__list">
+      <div class="list-item" [routerLink]="settingsRoutes.Account" routerLinkActive="active">
+        <div class="list-item-icon">
+          <i class="icon icon-user"></i>
+        </div>
+        <div class="list-item-payload">
+          <div class="list-item-payload__title">Account</div>
+          <div class="list-item-payload__subtitle">Account settings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-payload">
+    <router-outlet></router-outlet>
+  </div>
+</div>
