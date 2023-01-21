@@ -109,6 +109,6 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
   public onSwitchRule(rule: Rule): void {
     this.store.dispatch(new RuleActions.Update(rule.id, {
       disabled: !rule.disabled
-    }))
+    }));
   }
 }
