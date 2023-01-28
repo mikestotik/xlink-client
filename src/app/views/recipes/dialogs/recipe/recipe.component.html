@@ -1,6 +1,6 @@
 <form class="dialog" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="dialog-header">
-      <div class="dialog-header__title">{{ recipe ? 'Edit Recipe' : 'New Recipe'}}</div>
+      <div class="dialog-header__title">{{ entity ? 'Edit Recipe' : 'New Recipe'}}</div>
 
       <div class="dialog-header__close" (click)="onClose()">
         <i class="icon icon-close"></i>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="dialog-actions">
-      <button mat-flat-button type="button" *ngIf="recipe" (click)="onDelete()">
+      <button mat-flat-button type="button" *ngIf="entity" (click)="onDelete()">
         <div *ngIf="!formSent">Delete</div>
         <div *ngIf="formSent" class="loader loader-invert"></div>
       </button>

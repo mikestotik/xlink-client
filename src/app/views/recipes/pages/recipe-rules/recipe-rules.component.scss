@@ -62,7 +62,7 @@
   background: var(--color-dark-primary);
   margin-bottom: 8px;
   border-radius: 4px;
-  padding: 12px;
+  padding: 16px;
 
   &:last-child {
     margin-bottom: 0;
@@ -102,6 +102,7 @@
       align-items: center;
       margin-left: auto;
       opacity: 0.33;
+      font-size: 18px;
 
       i {
         cursor: pointer;
@@ -117,10 +118,10 @@
   &-desc {
     opacity: 0.5;
     font-size: 14px;
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   &-payload {
-    margin-top: 8px;
+    margin-top: 12px;
   }
 }

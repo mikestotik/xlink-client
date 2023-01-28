@@ -16,4 +16,5 @@ export const ApiConfig = {
   RECIPE: `${ CORE_API_URL }/recipe`,
   STEP: `${ CORE_API_URL }/step`,
   RULE: `${ CORE_API_URL }/rule`,
+  TRIGGER: `${ CORE_API_URL }/trigger`,
 };

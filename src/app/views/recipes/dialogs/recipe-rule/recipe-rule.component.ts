@@ -24,12 +24,12 @@ export class RecipeRuleComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public readonly rule: Rule,
+    public readonly entity: Rule,
     private readonly dialogRef: MatDialogRef<RecipeRuleComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 
-    this.form = this.createForm(rule);
+    this.form = this.createForm(entity);
   }
 
 
@@ -40,8 +40,8 @@ export class RecipeRuleComponent {
 
   public onSubmit(): void {
     this.formSent = true;
-    const value = { ...this.rule, ...this.form.value } as RulePayload;
-    const action = this.rule.id ? new RuleActions.Update(this.rule.id, value) : new RuleActions.Create(value);
+    const value = { ...this.entity, ...this.form.value } as RulePayload;
+    const action = this.entity.id ? new RuleActions.Update(this.entity.id, value) : new RuleActions.Create(value);
 
     this.store.dispatch(action).subscribe(() => {
       this.formSent = false;
@@ -52,7 +52,7 @@ export class RecipeRuleComponent {
 
   public onDelete(): void {
     this.formSent = true;
-    this.store.dispatch(new RuleActions.Delete(this.rule.id)).subscribe(() => {
+    this.store.dispatch(new RuleActions.Delete(this.entity.id)).subscribe(() => {
       this.formSent = false;
       this.onClose(true);
     });

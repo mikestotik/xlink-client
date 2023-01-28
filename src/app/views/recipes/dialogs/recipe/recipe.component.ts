@@ -26,13 +26,13 @@ export class RecipeComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public readonly recipe: Recipe,
+    public readonly entity: Recipe,
     private readonly dialogRef: MatDialogRef<RecipeComponent>,
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly store: Store) {
 
-    this.form = this.createForm(recipe);
+    this.form = this.createForm(entity);
   }
 
 
@@ -44,7 +44,7 @@ export class RecipeComponent {
   public onSubmit(): void {
     this.formSent = true;
     const value = this.form.value as RecipePayload;
-    const action = this.recipe ? new RecipeActions.Update(this.recipe.id, value) : new RecipeActions.Create(value);
+    const action = this.entity ? new RecipeActions.Update(this.entity.id, value) : new RecipeActions.Create(value);
 
     this.store.dispatch(action).subscribe(() => {
       this.formSent = false;
@@ -55,7 +55,7 @@ export class RecipeComponent {
 
   public onDelete(): void {
     this.formSent = true;
-    this.store.dispatch(new RecipeActions.Delete(this.recipe.id)).subscribe(() => {
+    this.store.dispatch(new RecipeActions.Delete(this.entity.id)).subscribe(() => {
       this.formSent = false;
       this.router.navigate([ AppRoutes.App, MainRoutes.Recipes ]);
       this.onClose(true);

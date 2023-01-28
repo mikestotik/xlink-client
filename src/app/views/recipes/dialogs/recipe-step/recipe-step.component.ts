@@ -34,12 +34,12 @@ export class RecipeStepComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public readonly step: Step,
+    public readonly entity: Step,
     private readonly dialogRef: MatDialogRef<RecipeStepComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 
-    this.form = this.createForm(step);
+    this.form = this.createForm(entity);
   }
 
 
@@ -52,8 +52,8 @@ export class RecipeStepComponent {
     this.formSentSave = true;
 
     const value = this.form.value as StepPayload;
-    const action = this.step.id ? new StepActions.Update(this.step.id, value) : new StepActions.Create({
-      ...this.step,
+    const action = this.entity.id ? new StepActions.Update(this.entity.id, value) : new StepActions.Create({
+      ...this.entity,
       ...value
     });
 
@@ -68,7 +68,7 @@ export class RecipeStepComponent {
   public onDelete(): void {
     this.formSentDelete = true;
 
-    this.store.dispatch(new StepActions.Delete(this.step.id)).subscribe(() => {
+    this.store.dispatch(new StepActions.Delete(this.entity.id)).subscribe(() => {
       this.formSentDelete = false;
       this.onClose(true);
     });

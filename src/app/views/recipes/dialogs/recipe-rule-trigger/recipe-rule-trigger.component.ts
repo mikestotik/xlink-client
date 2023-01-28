@@ -2,13 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { Rule, RulePayload } from '../../../../interfaces/rule.interface';
-import { RuleActions } from '../../../../models/rule/store/rule.actions';
+import { Trigger, TriggerPayload } from 'src/app/interfaces/trigger.interface';
+import { TriggerActions } from '../../../../models/trigger/store/trigger.actions';
 
 
 interface Form {
   title: FormControl<string>;
   desc: FormControl<string | undefined>;
+  chain: FormControl<string | undefined>;
+  recoveryTime: FormControl<number | undefined>;
+  recoveryTrigger: FormControl<number | undefined>;
 }
 
 
@@ -24,12 +27,12 @@ export class RecipeRuleTriggerComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public readonly rule: Rule,
+    public readonly entity: Trigger,
     private readonly dialogRef: MatDialogRef<RecipeRuleTriggerComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 
-    this.form = this.createForm(rule);
+    this.form = this.createForm(entity);
   }
 
 
@@ -40,8 +43,8 @@ export class RecipeRuleTriggerComponent {
 
   public onSubmit(): void {
     this.formSent = true;
-    const value = { ...this.rule, ...this.form.value } as RulePayload;
-    const action = this.rule.id ? new RuleActions.Update(this.rule.id, value) : new RuleActions.Create(value);
+    const value = { ...this.entity, ...this.form.value } as TriggerPayload;
+    const action = this.entity.id ? new TriggerActions.Update(this.entity.id, value) : new TriggerActions.Create(value);
 
     this.store.dispatch(action).subscribe(() => {
       this.formSent = false;
@@ -52,17 +55,20 @@ export class RecipeRuleTriggerComponent {
 
   public onDelete(): void {
     this.formSent = true;
-    this.store.dispatch(new RuleActions.Delete(this.rule.id)).subscribe(() => {
+    this.store.dispatch(new TriggerActions.Delete(this.entity.id)).subscribe(() => {
       this.formSent = false;
       this.onClose(true);
     });
   }
 
 
-  private createForm(data?: Rule): FormGroup<Form> {
+  private createForm(entity?: Trigger): FormGroup<Form> {
     return this.fb.nonNullable.group({
-      title: [ data ? data.title : '', [ Validators.required ] ],
-      desc: [ data ? data.desc : '' ]
+      title: [ entity ? entity.title : '', [ Validators.required ] ],
+      desc: [ entity ? entity.desc : '' ],
+      chain: [ entity ? entity.chain : '' ],
+      recoveryTime: [ entity ? entity.recoveryTime : 10000 ],
+      recoveryTrigger: [ entity ? entity.recoveryTrigger : undefined ]
     });
   }
 }

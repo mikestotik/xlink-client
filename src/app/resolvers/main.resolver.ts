@@ -8,6 +8,7 @@ import { DeviceActions } from '../models/device/store/device.actions';
 import { RecipeActions } from '../models/recipe/store/recipe.actions';
 import { RuleActions } from '../models/rule/store/rule.actions';
 import { StepActions } from '../models/step/store/step.actions';
+import { TriggerActions } from '../models/trigger/store/trigger.actions';
 
 
 @Injectable({
@@ -28,6 +29,7 @@ export class MainResolver implements Resolve<boolean> {
       new RecipeActions.GetAll(),
       new StepActions.GetAll(),
       new RuleActions.GetAll(),
+      new TriggerActions.GetAll(),
     ]);
   }
 }

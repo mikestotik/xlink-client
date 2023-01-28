@@ -25,6 +25,7 @@ import { RecipeState } from './models/recipe/store/recipe.state';
 import { RuleState } from './models/rule/store/rule.state';
 import { SettingsState } from './models/settings/store/settings.state';
 import { StepState } from './models/step/store/step.state';
+import { TriggerState } from './models/trigger/store/trigger.state';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { StepState } from './models/step/store/step.state';
       AssetState,
       RecipeState,
       StepState,
-      RuleState
+      RuleState,
+      TriggerState
     ], {
       developmentMode: !environment.production
     }),
