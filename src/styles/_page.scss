@@ -1,3 +1,5 @@
+$page-header-height: 88px;
+
 .page {
   display: flex;
   height: 100%;
@@ -9,7 +11,7 @@
     border-right: 1px solid rgba(255, 255, 255, 0.05);
 
     &__title {
-      flex: 0 0 80px;
+      flex: 0 0 $page-header-height;
       padding: 0 20px;
       font-size: 20px;
       display: flex;
@@ -27,7 +29,7 @@
     }
 
     &__controls {
-      flex: 0 0 80px;
+      flex: 0 0 $page-header-height;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -48,7 +50,7 @@
   flex-direction: column;
 
   &-header {
-    flex: 0 0 80px;
+    flex: 0 0 $page-header-height;
     display: flex;
     align-items: center;
     justify-content: space-between;

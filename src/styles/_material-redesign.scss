@@ -32,12 +32,16 @@ i[matSuffix] {
 
   // Buttons
   // ********************
-  .mdc-button .mdc-button__label {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    //min-width: 128px;
+  .mdc-button {
+    padding: 0 16px;
+
+    .mdc-button__label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //min-width: 128px;
+    }
   }
 
   .mat-mdc-button.mat-mdc-button-base,
