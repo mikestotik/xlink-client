@@ -108,6 +108,11 @@
         cursor: pointer;
       }
 
+      &:hover {
+        color: var(--color-brand);
+        opacity: 1;
+      }
+
       &.active {
         color: var(--color-brand);
         opacity: 1;
