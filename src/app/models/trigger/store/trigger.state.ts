@@ -95,4 +95,27 @@ export class TriggerState {
       })))
     );
   }
+
+
+  @Action(TriggerActions.AddAsset)
+  public addAsset(ctx: StateContext<TriggerModel>, { id, assetId }: TriggerActions.AddAsset): Observable<unknown> {
+    return this.service.addAsset(id, assetId).pipe(
+      tap(value => ctx.setState(patch({
+        list: updateItem<Trigger>(item => item?.id === id, patch(value))
+      })))
+    );
+  }
+
+
+  @Action(TriggerActions.DeleteAsset)
+  public deleteAsset(ctx: StateContext<TriggerModel>, {
+    id,
+    assetId
+  }: TriggerActions.DeleteAsset): Observable<unknown> {
+    return this.service.deleteAsset(id, assetId).pipe(
+      tap(value => ctx.setState(patch({
+        list: updateItem<Trigger>(item => item?.id === id, patch(value))
+      })))
+    );
+  }
 }

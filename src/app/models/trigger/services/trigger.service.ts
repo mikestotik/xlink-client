@@ -37,4 +37,16 @@ export class TriggerService {
   public delete(id: number): Observable<void> {
     return this.resource.delete(id);
   }
+
+
+  public addAsset(id: number, assetId: number): Observable<Trigger> {
+    return this.resource.addAsset(id, assetId);
+  }
+
+
+  public deleteAsset(id: number, assetId: number): Observable<Trigger> {
+    return this.resource.deleteAsset(id, assetId);
+  }
+
+
 }

@@ -47,5 +47,26 @@ export namespace TriggerActions {
       public id: number) {
     }
   }
+
+
+  export class AddAsset {
+    public static readonly type = '[Trigger] AddAsset';
+
+
+    constructor(
+      public id: number,
+      public assetId: number) {
+    }
+  }
+
+  export class DeleteAsset {
+    public static readonly type = '[Trigger] DeleteAsset';
+
+
+    constructor(
+      public id: number,
+      public assetId: number) {
+    }
+  }
 }
 

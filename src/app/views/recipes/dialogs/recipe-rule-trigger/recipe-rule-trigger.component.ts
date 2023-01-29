@@ -1,15 +1,20 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Trigger, TriggerPayload } from 'src/app/interfaces/trigger.interface';
+import { Asset } from '../../../../interfaces/asset.interface';
+import { Device } from '../../../../interfaces/device.interface';
+import { AssetState } from '../../../../models/asset/store/asset.state';
+import { DeviceState } from '../../../../models/device/store/device.state';
 import { TriggerActions } from '../../../../models/trigger/store/trigger.actions';
+import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 
 
 interface Form {
   title: FormControl<string>;
   desc: FormControl<string | undefined>;
-  chain: FormControl<string | undefined>;
   recoveryTime: FormControl<number | undefined>;
   recoveryTrigger: FormControl<number | undefined>;
 }
@@ -19,20 +24,48 @@ interface Form {
   templateUrl: './recipe-rule-trigger.component.html',
   styleUrls: [ './recipe-rule-trigger.component.scss' ]
 })
-export class RecipeRuleTriggerComponent {
+export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
+
+  @Select(DeviceState.selectAll)
+  public devices$!: Observable<Device[]>;
+
+  @Select(AssetState.selectByDevice)
+  public deviceAssets$!: Observable<(deviceId: number) => Asset[]>;
+
+  @Select(TriggerState.selectAll)
+  public triggers$!: Observable<Trigger[]>;
 
   public form!: FormGroup<Form>;
   public formSent!: boolean;
 
+  private destroy$ = new Subject<void>();
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public readonly entity: Trigger,
+    public entity: Trigger,
     private readonly dialogRef: MatDialogRef<RecipeRuleTriggerComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 
     this.form = this.createForm(entity);
+  }
+
+
+  public ngOnInit(): void {
+    if (this.entity.id) {
+      this.store.select(TriggerState.selectOne).pipe(
+        map(filterFn => filterFn(this.entity.id)),
+        filter(entity => !!entity),
+        takeUntil(this.destroy$)
+      ).subscribe(entity => this.entity = entity);
+    }
+  }
+
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 
@@ -62,13 +95,23 @@ export class RecipeRuleTriggerComponent {
   }
 
 
+  public onAddAsset(asset: Asset): void {
+    this.store.dispatch(new TriggerActions.AddAsset(this.entity.id, asset.id));
+  }
+
+
+  public onDeleteAsset(asset: Asset): void {
+    this.store.dispatch(new TriggerActions.DeleteAsset(this.entity.id, asset.id));
+  }
+
+
   private createForm(entity?: Trigger): FormGroup<Form> {
     return this.fb.nonNullable.group({
       title: [ entity ? entity.title : '', [ Validators.required ] ],
       desc: [ entity ? entity.desc : '' ],
-      chain: [ entity ? entity.chain : '' ],
       recoveryTime: [ entity ? entity.recoveryTime : 10000 ],
       recoveryTrigger: [ entity ? entity.recoveryTrigger : undefined ]
     });
   }
+
 }

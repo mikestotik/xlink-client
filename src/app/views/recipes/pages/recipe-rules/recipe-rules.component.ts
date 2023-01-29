@@ -6,11 +6,13 @@ import { filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxj
 import { Recipe } from '../../../../interfaces/recipe.interface';
 import { Rule } from '../../../../interfaces/rule.interface';
 import { Step } from '../../../../interfaces/step.interface';
+import { Trigger } from '../../../../interfaces/trigger.interface';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
 import { RuleActions } from '../../../../models/rule/store/rule.actions';
 import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
+import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 import { SortUtils } from '../../../../utils/sort.utils';
 import { RecipeRuleTriggerComponent } from '../../dialogs/recipe-rule-trigger/recipe-rule-trigger.component';
 import { RecipeRuleComponent } from '../../dialogs/recipe-rule/recipe-rule.component';
@@ -25,6 +27,10 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
   @Select(RuleState.selectByStep)
   public stepRules$!: Observable<(stepId: number) => Rule[]>;
+
+
+  @Select(TriggerState.selectByRule)
+  public ruleTriggers$!: Observable<(ruleId: number) => Trigger[]>;
 
   public recipe!: Recipe;
   public steps!: Step[];
@@ -112,16 +118,20 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
   public onAddTrigger(rule: Rule): void {
     this.dialog.open(RecipeRuleTriggerComponent, {
       data: {
-        rule: rule.id
+        rule: rule.id,
       }
     });
   }
 
 
-  public onEditTrigger(trigger: Rule): void {
+  public onEditTrigger(trigger: Trigger): void {
     this.dialog.open(RecipeRuleTriggerComponent, {
       data: trigger
     });
   }
 
+
+  public onAddAction(rule: Rule): void {
+    console.log(rule);
+  }
 }

@@ -53,18 +53,34 @@
               <i class="rule-header-title__edit icon icon-pencil" (click)="onEditRule(rule)"></i>
             </div>
 
-            <div class="rule-header-switch" [class.active]="!rule.disabled" (click)="onSwitchRule(rule)">
-              <i class="icon icon-power-off"></i>
+            <div class="rule-header-actions">
+              <i class="icon icon-target" (click)="onAddTrigger(rule)"></i>
+              <i class="icon icon-rocket" (click)="onAddAction(rule)"></i>
+              <i class="icon icon-power-off" (click)="onSwitchRule(rule)" [class.active]="!rule.disabled"></i>
             </div>
           </div>
 
           <div class="rule-desc">{{ rule.desc ? rule.desc : 'No description' }}</div>
 
           <div class="rule-payload">
-            <button mat-button color="primary" (click)="onAddTrigger(rule)">
-              <i class="icon icon-plus"></i>
-              <span>Add Trigger</span>
-            </button>
+            <div class="rule-triggers">
+              <div class="rule-triggers__list" *ngIf="(ruleTriggers$ | async) as ruleTriggers">
+                <div class="rule-trigger" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
+                  <div class="rule-trigger-header">
+                    {{ trigger.title }}
+                  </div>
+                  <div class="rule-trigger-body">
+                    ...
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rule-triggers">
+              <div class="rule-triggers__list">
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -38,4 +38,15 @@ export class TriggerResource {
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${ ApiConfig.TRIGGER }/${ id }`);
   }
+
+
+  public addAsset(id: number, assetId: number): Observable<Trigger> {
+    return this.http.post<Trigger>(`${ ApiConfig.TRIGGER }/${ id }/assets/${ assetId }`, {});
+  }
+
+
+  public deleteAsset(id: number, assetId: number): Observable<Trigger> {
+    return this.http.delete<Trigger>(`${ ApiConfig.TRIGGER }/${ id }/assets/${ assetId }`);
+  }
+
 }

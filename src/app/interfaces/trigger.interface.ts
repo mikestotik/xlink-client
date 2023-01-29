@@ -1,3 +1,4 @@
+import { Asset } from './asset.interface';
 import { Entity } from './entity.interface';
 
 
@@ -8,6 +9,8 @@ export interface TriggerPayload {
   recoveryTime?: number;
   recoveryTrigger?: number;
   triggered?: boolean;
+
+  assets: Asset[];
 }
 
 
