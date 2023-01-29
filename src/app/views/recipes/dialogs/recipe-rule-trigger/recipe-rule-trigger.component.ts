@@ -1,9 +1,10 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
-import { Trigger, TriggerPayload } from 'src/app/interfaces/trigger.interface';
+import { Trigger, TriggerCondition, TriggerPayload } from 'src/app/interfaces/trigger.interface';
+import { ConditionalOperator } from '../../../../enums/condition.enum';
 import { Asset } from '../../../../interfaces/asset.interface';
 import { Device } from '../../../../interfaces/device.interface';
 import { AssetState } from '../../../../models/asset/store/asset.state';
@@ -17,6 +18,7 @@ interface Form {
   desc: FormControl<string | undefined>;
   recoveryTime: FormControl<number>;
   recoveryTrigger: FormControl<number | undefined>;
+  conditions: FormArray;
 }
 
 
@@ -38,6 +40,8 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
   public form!: FormGroup<Form>;
   public formSent!: boolean;
 
+  public operator = ConditionalOperator;
+
   private destroy$ = new Subject<void>();
 
 
@@ -49,6 +53,15 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
     private readonly store: Store) {
 
     this.form = this.createForm(entity);
+
+    if (entity?.conditions?.length) {
+      entity.conditions.forEach(i => this.onAddCondition(i));
+    }
+  }
+
+
+  get conditions() {
+    return this.form.controls.conditions as FormArray;
   }
 
 
@@ -105,12 +118,28 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
   }
 
 
+  public onAddCondition(condition?: TriggerCondition) {
+    const form = this.fb.group({
+      operator: [ condition ? condition.operator : ConditionalOperator.Equal, Validators.required ],
+      value: [ condition ? condition.value : null, Validators.required ],
+      chain: [ condition ? condition.chain : null ]
+    });
+    this.form.controls.conditions.push(form);
+  }
+
+
+  public onDeleteCondition(index: number) {
+    this.form.controls.conditions.removeAt(index);
+  }
+
+
   private createForm(entity?: Trigger): FormGroup<Form> {
     return this.fb.nonNullable.group({
       title: [ entity?.title ? entity.title : '', [ Validators.required ] ],
       desc: [ entity?.desc ],
       recoveryTime: [ entity?.recoveryTime ? entity.recoveryTime : 3600 ],
-      recoveryTrigger: [ entity?.recoveryTrigger ? entity.recoveryTrigger : undefined ]
+      recoveryTrigger: [ entity?.recoveryTrigger ? entity.recoveryTrigger : undefined ],
+      conditions: this.fb.array([])
     });
   }
 

@@ -65,7 +65,36 @@
     </div>
 
     <div class="dialog-content__field">
+      <ng-container formArrayName="conditions">
+        <ng-container *ngFor="let conditionForm of conditions.controls; let i = index">
+          <div class="trigger-condition" [formGroupName]="i">
+            <mat-form-field class="trigger-condition__select" floatLabel="always">
+              <mat-label>Operator</mat-label>
+              <mat-select placeholder="-" formControlName="operator">
+                <mat-option [value]="operator.Equal">Equal</mat-option>
+                <mat-option [value]="operator.NotEqual">NotEqual</mat-option>
+                <mat-option [value]="operator.Less">Less</mat-option>
+                <mat-option [value]="operator.More">More</mat-option>
+                <mat-option [value]="operator.LessOrEqual">Less Or Equal</mat-option>
+                <mat-option [value]="operator.MoreOrEqual">More Or Equal</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="trigger-condition__value" floatLabel="always">
+              <mat-label>Value</mat-label>
+              <input matInput placeholder="-" formControlName="value">
+            </mat-form-field>
 
+            <div class="trigger-condition__remove" (click)="onDeleteCondition(i)">
+              <i class="icon icon-trash"></i>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <button mat-button color="primary" type="button" (click)="onAddCondition()">
+        <i class="icon icon-plus"></i>
+        <span>Condition</span>
+      </button>
     </div>
   </div>
 
