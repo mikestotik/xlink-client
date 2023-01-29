@@ -1,13 +1,8 @@
 export enum ConditionalOperator {
   Equal,
+  NotEqual,
   Less,
   More,
   LessOrEqual,
   MoreOrEqual,
-}
-
-
-export enum TimeConditionType {
-  Once,
-  Repeat,
 }

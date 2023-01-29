@@ -34,7 +34,7 @@
       </mat-select>
     </mat-form-field>
 
-    <div class="dialog-content__field">
+    <div class="dialog-content__field" *ngIf="entity.id">
       <div class="action-list">
         <div class="action-list-select">
           <mat-form-field appearance="fill" *ngIf="(devices$ | async) as devices" floatLabel="always">
@@ -62,6 +62,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="dialog-content__field">
+
     </div>
   </div>
 

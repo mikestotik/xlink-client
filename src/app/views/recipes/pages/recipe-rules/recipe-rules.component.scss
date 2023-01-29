@@ -128,7 +128,7 @@
   }
 
   &-payload {
-    margin-top: 8px;
+    margin-top: 16px;
     display: flex;
   }
 }
@@ -148,6 +148,61 @@
 
 
 .rule-trigger {
-  &-header {}
-  &-body {}
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border-color-default);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover &-header {
+    color: var(--color-brand);
+  }
+
+  &-header {
+    background: var(--background-accent);
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    transition: color 256ms;
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      margin-right: 6px;
+      opacity: 0.5;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+  }
+
+  &-body {
+    padding: 8px 8px;
+    display: flex;
+
+    &__assets {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      app-tag {
+        margin-bottom: 4px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &__condition {
+      flex: 1;
+    }
+  }
 }

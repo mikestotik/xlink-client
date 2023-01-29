@@ -15,7 +15,7 @@ import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 interface Form {
   title: FormControl<string>;
   desc: FormControl<string | undefined>;
-  recoveryTime: FormControl<number | undefined>;
+  recoveryTime: FormControl<number>;
   recoveryTrigger: FormControl<number | undefined>;
 }
 
@@ -107,10 +107,10 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
 
   private createForm(entity?: Trigger): FormGroup<Form> {
     return this.fb.nonNullable.group({
-      title: [ entity ? entity.title : '', [ Validators.required ] ],
-      desc: [ entity ? entity.desc : '' ],
-      recoveryTime: [ entity ? entity.recoveryTime : 10000 ],
-      recoveryTrigger: [ entity ? entity.recoveryTrigger : undefined ]
+      title: [ entity?.title ? entity.title : '', [ Validators.required ] ],
+      desc: [ entity?.desc ],
+      recoveryTime: [ entity?.recoveryTime ? entity.recoveryTime : 3600 ],
+      recoveryTrigger: [ entity?.recoveryTrigger ? entity.recoveryTrigger : undefined ]
     });
   }
 

@@ -67,10 +67,24 @@
               <div class="rule-triggers__list" *ngIf="(ruleTriggers$ | async) as ruleTriggers">
                 <div class="rule-trigger" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
                   <div class="rule-trigger-header">
-                    {{ trigger.title }}
+                    <div class="rule-trigger-header__icon">
+                      <i class="icon icon-hummer"></i>
+                    </div>
+                    <div class="rule-trigger-header__title">
+                      {{ trigger.title }}
+                    </div>
                   </div>
+
                   <div class="rule-trigger-body">
-                    ...
+                    <div class="rule-trigger-body__assets">
+                      <app-tag *ngFor="let asset of trigger.assets" icon="icon icon-plug">
+                        {{ asset.title }}
+                      </app-tag>
+                    </div>
+
+                    <div class="rule-trigger-body__condition">
+
+                    </div>
                   </div>
                 </div>
               </div>
