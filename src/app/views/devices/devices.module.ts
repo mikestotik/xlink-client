@@ -15,10 +15,8 @@ import { SharedModule } from '../shared/shared.module';
 import { DevicesRouting } from './devices.routing';
 import { AssetDetailsComponent } from './dialogs/asset-details/asset-details.component';
 import { DeviceDetailsComponent } from './dialogs/device-details/device-details.component';
-import { DeviceListComponent } from './pages/device-list/device-list.component';
 import { DeviceAssetsComponent } from './pages/device-assets/device-assets.component';
-import { AssetDeviceNamePipe } from './pipes/asset-device-name.pipe';
-import { AssetPermissionNamePipe } from './pipes/asset-permission-name.pipe';
+import { DeviceListComponent } from './pages/device-list/device-list.component';
 
 
 @NgModule({
@@ -26,9 +24,7 @@ import { AssetPermissionNamePipe } from './pipes/asset-permission-name.pipe';
     DeviceListComponent,
     DeviceDetailsComponent,
     DeviceAssetsComponent,
-    AssetDetailsComponent,
-    AssetDeviceNamePipe,
-    AssetPermissionNamePipe
+    AssetDetailsComponent
   ],
   imports: [
     CommonModule,

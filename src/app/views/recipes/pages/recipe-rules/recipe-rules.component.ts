@@ -14,7 +14,7 @@ import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
 import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 import { SortUtils } from '../../../../utils/sort.utils';
-import { RecipeRuleTriggerComponent } from '../../dialogs/recipe-rule-trigger/recipe-rule-trigger.component';
+import { RecipeTriggerComponent } from '../../dialogs/recipe-trigger/recipe-trigger.component';
 import { RecipeRuleComponent } from '../../dialogs/recipe-rule/recipe-rule.component';
 import { RecipeStepComponent } from '../../dialogs/recipe-step/recipe-step.component';
 
@@ -116,7 +116,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onAddTrigger(rule: Rule): void {
-    this.dialog.open(RecipeRuleTriggerComponent, {
+    this.dialog.open(RecipeTriggerComponent, {
       data: {
         rule: rule.id,
       }
@@ -125,7 +125,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onEditTrigger(trigger: Trigger): void {
-    this.dialog.open(RecipeRuleTriggerComponent, {
+    this.dialog.open(RecipeTriggerComponent, {
       data: trigger
     });
   }

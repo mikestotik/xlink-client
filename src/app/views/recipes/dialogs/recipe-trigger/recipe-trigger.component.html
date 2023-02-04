@@ -38,13 +38,17 @@
       <div class="action-list">
         <div class="action-list-select">
           <mat-form-field appearance="fill" *ngIf="(devices$ | async) as devices" floatLabel="always">
-            <mat-label>Target</mat-label>
-            <input type="text" matInput [matAutocomplete]="autoGroup" placeholder="Search...">
+            <mat-label>Select Target (Asset)</mat-label>
+            <input type="text" matInput [matAutocomplete]="autoGroup" placeholder="-">
             <mat-autocomplete #autoGroup="matAutocomplete">
               <mat-optgroup *ngFor="let device of devices" [label]="device.title">
                 <ng-container *ngIf="(deviceAssets$ | async) as deviceAssets">
                   <mat-option *ngFor="let asset of deviceAssets(device.id)" (click)="onAddAsset(asset)">
-                    {{ asset.title }}
+                    <div class="target-item">
+                      <i class="target-item__icon icon icon-plug"></i>
+                      <span class="target-item__title">{{ asset.title }}</span>
+                      <span class="target-item__type chip chip-success">{{ asset.type | assetFieldName: 'type' }}</span>
+                    </div>
                   </mat-option>
                 </ng-container>
               </mat-optgroup>
@@ -52,48 +56,47 @@
           </mat-form-field>
         </div>
 
+        <div class="action-list-item" *ngIf="!entity.assets.length">
+          <div class="action-list-item__title">No target</div>
+        </div>
+
         <div class="action-list-item" *ngFor="let asset of entity.assets">
           <div class="action-list-item__icon">
             <i class="icon icon-plug"></i>
           </div>
-          <div class="action-list-item__title">{{ asset.title }}</div>
+          <div class="action-list-item__title">{{ asset.device | assetDeviceName }}::{{ asset.title }}</div>
           <div class="action-list-item__close" (click)="onDeleteAsset(asset)">
-            <i class="icon icon-close"></i>
+            <i class="icon icon-trash"></i>
           </div>
         </div>
       </div>
     </div>
 
     <div class="dialog-content__field">
-      <ng-container formArrayName="conditions">
-        <ng-container *ngFor="let conditionForm of conditions.controls; let i = index">
-          <div class="trigger-condition" [formGroupName]="i">
-            <mat-form-field class="trigger-condition__select" floatLabel="always">
-              <mat-label>Operator</mat-label>
-              <mat-select placeholder="-" formControlName="operator">
-                <mat-option [value]="operator.Equal">Equal</mat-option>
-                <mat-option [value]="operator.NotEqual">NotEqual</mat-option>
-                <mat-option [value]="operator.Less">Less</mat-option>
-                <mat-option [value]="operator.More">More</mat-option>
-                <mat-option [value]="operator.LessOrEqual">Less Or Equal</mat-option>
-                <mat-option [value]="operator.MoreOrEqual">More Or Equal</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="trigger-condition__value" floatLabel="always">
-              <mat-label>Value</mat-label>
-              <input matInput placeholder="-" formControlName="value">
-            </mat-form-field>
+      <ng-container formArrayName="conditions" *ngFor="let conditionForm of conditions.controls; let i = index">
+        <div class="trigger-condition" [formGroupName]="i">
+          <mat-form-field class="trigger-condition__select" floatLabel="always">
+            <mat-label>Operator</mat-label>
+            <mat-select placeholder="-" formControlName="operator">
+              <mat-option [value]="operator.Equal">Equal</mat-option>
+              <mat-option [value]="operator.NotEqual">NotEqual</mat-option>
+              <mat-option [value]="operator.Less">Less</mat-option>
+              <mat-option [value]="operator.More">More</mat-option>
+              <mat-option [value]="operator.LessOrEqual">Less Or Equal</mat-option>
+              <mat-option [value]="operator.MoreOrEqual">More Or Equal</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-            <div class="trigger-condition__remove" (click)="onDeleteCondition(i)">
-              <i class="icon icon-trash"></i>
-            </div>
-          </div>
-        </ng-container>
+          <mat-form-field class="trigger-condition__value" floatLabel="always">
+            <mat-label>Value</mat-label>
+            <input matInput placeholder="-" formControlName="value" (blur)="onBlurCondition(conditionForm, i)">
+          </mat-form-field>
+        </div>
       </ng-container>
 
-      <button mat-button color="primary" type="button" (click)="onAddCondition()">
+      <button mat-button color="primary" type="button" (click)="onAddCondition()" style="width: 100%">
         <i class="icon icon-plus"></i>
-        <span>Condition</span>
+        <span>Add Condition</span>
       </button>
     </div>
   </div>

@@ -9,11 +9,11 @@
     border-radius: 4px;
     margin-top: 6px;
     height: 40px;
-    padding: 0 12px;
+    padding: 0 16px;
     cursor: pointer;
 
     &__icon {
-      margin-right: 12px;
+      margin-right: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -29,7 +29,13 @@
       align-items: center;
       justify-content: center;
       margin-left: auto;
-      opacity: 0.25;
+      opacity: 0.33;
+      font-size: 20px;
+      transition: opacity 256ms;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
@@ -41,6 +47,7 @@
 
 .trigger-condition {
   display: flex;
+  margin-bottom: 16px;
 
   &__select {
     flex: 1;
@@ -67,5 +74,21 @@
       width: 32px;
       border-radius: 4px;
     }
+  }
+}
+
+.target-item {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__title {
+  }
+
+  &__type {
+    margin-left: 12px;
   }
 }

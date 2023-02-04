@@ -3,9 +3,9 @@ import { AssetPermission, DataType } from '../../../enums/asset.enum';
 
 
 @Pipe({
-  name: 'assetPermissionName'
+  name: 'assetFieldName'
 })
-export class AssetPermissionNamePipe implements PipeTransform {
+export class AssetFieldNamePipe implements PipeTransform {
 
   public transform(value: AssetPermission | DataType, dict: 'perm' | 'type'): string {
     if (dict === 'perm') {
@@ -16,6 +16,7 @@ export class AssetPermissionNamePipe implements PipeTransform {
           return 'Write';
       }
     }
+
     if (dict === 'type') {
       switch (value) {
         case DataType.Integer:

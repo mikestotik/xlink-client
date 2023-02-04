@@ -37,17 +37,6 @@
       text-transform: uppercase;
       font-size: 14px;
       opacity: 0.75;
-      transition: color 256ms;
-      cursor: pointer;
-
-      i {
-        margin-right: 6px;
-      }
-
-      &:hover {
-        opacity: 1;
-        color: var(--color-brand);
-      }
     }
 
     &__field {

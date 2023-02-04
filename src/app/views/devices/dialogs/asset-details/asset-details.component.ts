@@ -19,6 +19,7 @@ interface Form {
   title: FormControl<string>;
   desc: FormControl<string | undefined>;
   icon: FormControl<string | undefined>;
+  color: FormControl<string | undefined>;
   link: FormControl<string>;
   permission: FormControl<AssetPermission>;
   meta: FormGroup<AssetMetaForm>;
@@ -50,6 +51,10 @@ export class AssetDetailsComponent {
   public units = [
     { type: AssetUnit.Percent, name: `Percent (${ AssetUnit.Percent })` },
     { type: AssetUnit.Celsius, name: `Celsius (${ AssetUnit.Celsius })` }
+  ];
+
+  public colors = [
+    { type: '0', name: '' },
   ];
 
 
@@ -101,6 +106,7 @@ export class AssetDetailsComponent {
       title: [ asset ? asset.title : '', [ Validators.required ] ],
       desc: [ asset ? asset.desc : '' ],
       icon: [ asset ? asset.icon : '' ],
+      color: [ asset ? asset.color : '' ],
       permission: [ asset ? asset.permission : AssetPermission.Read, [ Validators.required ] ],
       type: [ asset ? asset.type : DataType.Integer, [ Validators.required ] ],
       meta: this.fb.nonNullable.group({

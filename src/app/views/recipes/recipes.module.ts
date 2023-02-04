@@ -14,10 +14,10 @@ import { MatTableModule } from '@angular/material/table';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { RecipeComponent } from './dialogs/recipe/recipe.component';
-import { RecipeRuleTriggerComponent } from './dialogs/recipe-rule-trigger/recipe-rule-trigger.component';
+import { RecipeTriggerComponent } from './dialogs/recipe-trigger/recipe-trigger.component';
 import { RecipeRuleComponent } from './dialogs/recipe-rule/recipe-rule.component';
 import { RecipeStepComponent } from './dialogs/recipe-step/recipe-step.component';
+import { RecipeComponent } from './dialogs/recipe/recipe.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { RecipeRulesComponent } from './pages/recipe-rules/recipe-rules.component';
 import { StepStatusPipe } from './pipes/step-status.pipe';
@@ -32,7 +32,7 @@ import { RecipesRoutes } from './recipes.routing';
     RecipeStepComponent,
     StepStatusPipe,
     RecipeRuleComponent,
-    RecipeRuleTriggerComponent
+    RecipeTriggerComponent
   ],
   exports: [
     RecipeComponent

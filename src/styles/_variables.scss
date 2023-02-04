@@ -19,7 +19,7 @@
   --button-border-radius: 4px;
 
   --dialog-border-radius: 4px;
-  --dialog-padding: 20px 20px 24px;
+  --dialog-padding: 16px 20px 32px;
   --dialog-width: 320px;
 
   // APP VARS
@@ -34,10 +34,11 @@
   // Text
   --text-color: var(--color-white);
 
+
   // Card
   --background-accent: rgba(255, 255, 255, 0.04);
 
-  --border-color-default: rgba(255, 255, 255, 0.04);
+  --border-color-default: rgba(255, 255, 255, 0.05);
 
   // Input
   --input-autofill-background: #2a2b2e;

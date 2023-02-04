@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { filter, map, Observable, Subject, takeUntil } from 'rxjs';
@@ -23,10 +23,10 @@ interface Form {
 
 
 @Component({
-  templateUrl: './recipe-rule-trigger.component.html',
-  styleUrls: [ './recipe-rule-trigger.component.scss' ]
+  templateUrl: './recipe-trigger.component.html',
+  styleUrls: [ './recipe-trigger.component.scss' ]
 })
-export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
+export class RecipeTriggerComponent implements OnInit, OnDestroy {
 
   @Select(DeviceState.selectAll)
   public devices$!: Observable<Device[]>;
@@ -48,7 +48,7 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public entity: Trigger,
-    private readonly dialogRef: MatDialogRef<RecipeRuleTriggerComponent>,
+    private readonly dialogRef: MatDialogRef<RecipeTriggerComponent>,
     private readonly fb: FormBuilder,
     private readonly store: Store) {
 
@@ -60,7 +60,7 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
   }
 
 
-  get conditions() {
+  get conditions(): FormArray {
     return this.form.controls.conditions as FormArray;
   }
 
@@ -133,6 +133,13 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
   }
 
 
+  public onBlurCondition(conditionForm: AbstractControl, i: number): void {
+    if (conditionForm.status === 'INVALID') {
+      this.onDeleteCondition(i);
+    }
+  }
+
+
   private createForm(entity?: Trigger): FormGroup<Form> {
     return this.fb.nonNullable.group({
       title: [ entity?.title ? entity.title : '', [ Validators.required ] ],
@@ -142,5 +149,6 @@ export class RecipeRuleTriggerComponent implements OnInit, OnDestroy {
       conditions: this.fb.array([])
     });
   }
+
 
 }

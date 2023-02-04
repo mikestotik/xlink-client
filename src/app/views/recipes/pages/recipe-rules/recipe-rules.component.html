@@ -55,7 +55,7 @@
 
             <div class="rule-header-actions">
               <i class="icon icon-target" (click)="onAddTrigger(rule)"></i>
-              <i class="icon icon-rocket" (click)="onAddAction(rule)"></i>
+              <i class="icon icon-bolt" (click)="onAddAction(rule)"></i>
               <i class="icon icon-power-off" (click)="onSwitchRule(rule)" [class.active]="!rule.disabled"></i>
             </div>
           </div>
@@ -77,13 +77,16 @@
 
                   <div class="rule-trigger-body">
                     <div class="rule-trigger-body__assets">
-                      <app-tag *ngFor="let asset of trigger.assets" icon="icon icon-plug">
-                        {{ asset.title }}
-                      </app-tag>
+                      <div class="condition" *ngFor="let asset of trigger.assets">
+                        <span class="condition__value">{{ asset.device | assetDeviceName }}::{{ asset.title }}</span>
+                      </div>
                     </div>
 
                     <div class="rule-trigger-body__condition">
-
+                      <div class="condition" *ngFor="let condition of trigger.conditions">
+                        <span class="condition__operator">{{ condition.operator | assetCondition }}</span>
+                        <span class="condition__value">{{ condition.value }}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
