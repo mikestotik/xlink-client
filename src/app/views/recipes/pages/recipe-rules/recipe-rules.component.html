@@ -48,12 +48,13 @@
         <div class="rule" *ngFor="let rule of stepRules(step.id)">
           <div class="rule-header">
             <div class="rule-header-title">
-              <i class="rule-header-title__icon icon icon-bookmark"></i>
-              <span class="rule-header-title__text">{{ rule.title }}</span>
+              <i class="icon icon-bookmark"></i>
+              <span>{{ rule.title }}</span>
             </div>
 
             <div class="rule-header-actions">
               <i class="icon icon-more-horizontal" [matMenuTriggerFor]="ruleMenu"></i>
+
               <mat-menu #ruleMenu="matMenu" (click)="onAddTrigger(rule)">
                 <button mat-menu-item (click)="onEditRule(rule)">
                   <i class="icon icon-pencil"></i>
@@ -64,16 +65,6 @@
                   <i class="icon icon-power-off"></i>
                   <span>Switch {{ rule.disabled ? 'On' : 'Off' }}</span>
                 </button>
-
-                <button mat-menu-item (click)="onAddTrigger(rule)">
-                  <i class="icon icon-hummer"></i>
-                  <span>Add Trigger</span>
-                </button>
-
-                <button mat-menu-item (click)="onAddAction(rule)">
-                  <i class="icon icon-bolt"></i>
-                  <span>Add Action</span>
-                </button>
               </mat-menu>
             </div>
           </div>
@@ -81,33 +72,47 @@
           <div class="rule-desc">{{ rule.desc ? rule.desc : 'No description' }}</div>
 
           <div class="rule-payload">
-            <div *ngIf="false" class="rule-triggers">
-              <div class="rule-triggers__list" *ngIf="(ruleTriggers$ | async) as ruleTriggers">
-                <div class="rule-trigger" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
-                  <div class="rule-trigger-header">
-                    <div class="rule-trigger-header__icon">
-                      <i class="icon icon-hummer"></i>
-                    </div>
-                    <div class="rule-trigger-header__title">
-                      {{ trigger.title }}
-                    </div>
-                  </div>
-
-                  <div class="rule-trigger-body">
-                    <div class="rule-trigger-body__assets">
-                      <div class="condition" *ngFor="let asset of trigger.assets">
-                        <span class="condition__value">{{ asset.device | assetDeviceName }}::{{ asset.title }}</span>
-                      </div>
-                    </div>
-
-                    <div class="rule-trigger-body__condition">
-                      <div class="condition" *ngFor="let condition of trigger.conditions">
-                        <span class="condition__operator">{{ condition.operator | assetCondition }}</span>
-                        <span class="condition__value">{{ condition.value }}</span>
-                      </div>
-                    </div>
-                  </div>
+            <div class="rule-payload__section">
+              <div class="rule-node">
+                <div class="rule-node-header" (click)="onAddTrigger(rule)">
+                  <i class="icon icon-plus"></i>
+                  <span>Trigger</span>
                 </div>
+
+                <div class="rule-node-body">
+                  <ng-container *ngIf="(ruleTriggers$ | async) as ruleTriggers">
+                    <div class="trigger" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
+                      <div class="trigger-title">{{ trigger.title }}</div>
+
+                      <div class="trigger-assets">
+                        <div class="trigger-assets-item" *ngFor="let asset of trigger.assets">
+                          <div class="trigger-assets-item__icon">
+                            <i class="icon icon-package"></i>
+                          </div>
+                          <div class="trigger-assets-item__device">{{ asset.device | assetDeviceName }} :: </div>
+                          <div class="trigger-assets-item__asset">{{ asset.title }}</div>
+                        </div>
+                      </div>
+
+                      <div class="trigger-conditions">
+                        <div class="trigger-conditions__item" *ngFor="let condition of trigger.conditions">
+                          <span>{{ condition.operator | assetCondition }}</span>
+                          <span>{{ condition.value }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <div class="rule-payload__section">
+              <div class="rule-node">
+                <div class="rule-node-header" (click)="onAddAction(rule)">
+                  <i class="icon icon-plus"></i>
+                  <span>Action</span>
+                </div>
+                <div class="rule-node-body">...</div>
               </div>
             </div>
           </div>

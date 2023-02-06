@@ -20,7 +20,7 @@ export class AssetConditionPipe implements PipeTransform {
       case ConditionalOperator.LessOrEqual:
         return '<=';
       case ConditionalOperator.MoreOrEqual:
-        return '<=';
+        return '>=';
     }
   }
 

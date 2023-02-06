@@ -25,11 +25,11 @@ export class TriggerState {
 
 
   @Selector()
-  public static selectOne(state: TriggerModel): (id: number) => Trigger {
-    return (id: number): Trigger => {
+  public static selectOne(state: TriggerModel): (id: number) => Trigger | null {
+    return (id: number): Trigger | null => {
       const value = state.list.find(i => i.id === id);
       if (!value) {
-        throw new Error('Trigger not found');
+        return null;
       }
       return value;
     };

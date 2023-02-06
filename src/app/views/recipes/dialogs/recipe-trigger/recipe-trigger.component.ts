@@ -70,6 +70,7 @@ export class RecipeTriggerComponent implements OnInit, OnDestroy {
       this.store.select(TriggerState.selectOne).pipe(
         map(filterFn => filterFn(this.entity.id)),
         filter(entity => !!entity),
+        map(entity => entity as Trigger),
         takeUntil(this.destroy$)
       ).subscribe(entity => this.entity = entity);
     }
