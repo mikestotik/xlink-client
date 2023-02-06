@@ -116,12 +116,14 @@
                   <span>Action</span>
                 </div>
                 <div class="rule-section-body">
-                  <div class="rule-node">
-                    <div class="rule-node__title">Action Title</div>
-                    <div class="rule-node__body">
-                      ...
+                  <ng-container *ngIf="(ruleActions$ | async) as ruleActions">
+                    <div class="rule-node" *ngFor="let action of ruleActions(rule.id)" (click)="onEditAction(action)">
+                      <div class="rule-node__title">{{ action.type | actionTypeName }}</div>
+                      <div class="rule-node__body">
+                        ...
+                      </div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Resolve } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AccountActions } from '../models/account/store/account.actions';
+import { RuleActionActions } from '../models/action/store/action.actions';
 import { AssetActions } from '../models/asset/store/asset.actions';
 import { DeviceActions } from '../models/device/store/device.actions';
 import { RecipeActions } from '../models/recipe/store/recipe.actions';
@@ -30,6 +31,7 @@ export class MainResolver implements Resolve<boolean> {
       new StepActions.GetAll(),
       new RuleActions.GetAll(),
       new TriggerActions.GetAll(),
+      new RuleActionActions.GetAll(),
     ]);
   }
 }

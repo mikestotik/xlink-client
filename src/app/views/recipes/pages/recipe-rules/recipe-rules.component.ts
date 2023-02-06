@@ -3,10 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { RuleAction } from '../../../../interfaces/action.interface';
 import { Recipe } from '../../../../interfaces/recipe.interface';
 import { Rule } from '../../../../interfaces/rule.interface';
 import { Step } from '../../../../interfaces/step.interface';
 import { Trigger } from '../../../../interfaces/trigger.interface';
+import { ActionState } from '../../../../models/action/store/action.state';
 import { RecipeState } from '../../../../models/recipe/store/recipe.state';
 import { RuleActions } from '../../../../models/rule/store/rule.actions';
 import { RuleState } from '../../../../models/rule/store/rule.state';
@@ -15,9 +17,10 @@ import { StepState } from '../../../../models/step/store/step.state';
 import { TriggerActions } from '../../../../models/trigger/store/trigger.actions';
 import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 import { SortUtils } from '../../../../utils/sort.utils';
-import { RecipeTriggerComponent } from '../../dialogs/recipe-trigger/recipe-trigger.component';
+import { RecipeActionComponent } from '../../dialogs/recipe-action/recipe-action.component';
 import { RecipeRuleComponent } from '../../dialogs/recipe-rule/recipe-rule.component';
 import { RecipeStepComponent } from '../../dialogs/recipe-step/recipe-step.component';
+import { RecipeTriggerComponent } from '../../dialogs/recipe-trigger/recipe-trigger.component';
 
 
 @Component({
@@ -32,6 +35,9 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
   @Select(TriggerState.selectByRule)
   public ruleTriggers$!: Observable<(ruleId: number) => Trigger[]>;
+
+  @Select(ActionState.selectByRule)
+  public ruleActions$!: Observable<(ruleId: number) => RuleAction[]>;
 
   public recipe!: Recipe;
   public steps!: Step[];
@@ -136,6 +142,18 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onAddAction(rule: Rule): void {
-    console.log(rule);
+    this.dialog.open(RecipeActionComponent, {
+      data: {
+        rule: rule.id,
+        payload: { do: 'something' }
+      }
+    });
+  }
+
+
+  public onEditAction(action: RuleAction): void {
+    this.dialog.open(RecipeActionComponent, {
+      data: action
+    });
   }
 }

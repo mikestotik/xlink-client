@@ -18,6 +18,7 @@ import { HammerConfig } from './config/hammer.config';
 import { ErrorsInterceptor } from './interceptors/errors.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AccountState } from './models/account/store/account.state';
+import { ActionState } from './models/action/store/action.state';
 import { AssetState } from './models/asset/store/asset.state';
 import { AuthState } from './models/auth/store/auth.state';
 import { DeviceState } from './models/device/store/device.state';
@@ -47,7 +48,8 @@ import { TriggerState } from './models/trigger/store/trigger.state';
       RecipeState,
       StepState,
       RuleState,
-      TriggerState
+      TriggerState,
+      ActionState
     ], {
       developmentMode: !environment.production
     }),

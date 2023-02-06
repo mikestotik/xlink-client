@@ -20,8 +20,10 @@ import { RecipeStepComponent } from './dialogs/recipe-step/recipe-step.component
 import { RecipeComponent } from './dialogs/recipe/recipe.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { RecipeRulesComponent } from './pages/recipe-rules/recipe-rules.component';
+import { ActionTypeNamePipe } from './pipes/action-type.pipe';
 import { StepStatusPipe } from './pipes/step-status.pipe';
 import { RecipesRoutes } from './recipes.routing';
+import { RecipeActionComponent } from './dialogs/recipe-action/recipe-action.component';
 
 
 @NgModule({
@@ -32,10 +34,9 @@ import { RecipesRoutes } from './recipes.routing';
     RecipeStepComponent,
     StepStatusPipe,
     RecipeRuleComponent,
-    RecipeTriggerComponent
-  ],
-  exports: [
-    RecipeComponent
+    RecipeTriggerComponent,
+    RecipeActionComponent,
+    ActionTypeNamePipe
   ],
   imports: [
     CommonModule,
