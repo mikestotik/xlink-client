@@ -110,11 +110,12 @@
   &-desc {
     opacity: 0.5;
     font-size: 14px;
+    padding: 4px 0;
   }
 
   &-payload {
     display: flex;
-    margin-top: 8px;
+    margin-top: 4px;
 
     &__section {
       flex: 1;
