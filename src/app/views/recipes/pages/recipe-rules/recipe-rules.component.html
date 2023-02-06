@@ -20,7 +20,10 @@
   <div class="page-content-payload" *ngIf="(stepRules$ | async) as stepRules">
     <div class="step" *ngFor="let step of steps">
       <div class="step-header">
-        <div class="step-header__title">{{ step.title }}</div>
+        <div class="step-header__title">
+          <i class="icon icon-flag-alt-2"></i>
+          <span>{{ step.title }}</span>
+        </div>
 
         <div class="step-header__status" *ngIf="false">
           <div class="chip chip-sm">{{ step.status | stepStatus }}</div>
@@ -53,14 +56,18 @@
               <i class="icon icon-pencil" (click)="onEditRule(rule)"></i>
             </div>
 
-            <div class="rule-header-actions" >
-              <mat-slide-toggle [checked]="!rule.disabled" (click)="onSwitchRule(rule)" color="primary" labelPosition="before">
-<!--                {{ rule.disabled ? 'On' : 'Off' }}-->
+            <div class="rule-header-actions">
+              <mat-slide-toggle
+                (click)="onSwitchRule(rule)"
+                [checked]="!rule.disabled"
+                color="primary"
+                labelPosition="before"
+              >
               </mat-slide-toggle>
             </div>
           </div>
 
-          <div class="rule-desc">{{ rule.desc ? rule.desc : 'No description' }}</div>
+          <div class="rule-desc">Updated: {{ rule.updated | date: 'dd MMMM yyyy' }}</div>
 
           <div class="rule-payload">
             <div class="rule-payload__section">
@@ -72,7 +79,8 @@
 
                 <div class="rule-section-body">
                   <ng-container *ngIf="(ruleTriggers$ | async) as ruleTriggers">
-                    <div class="rule-node" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
+                    <div class="rule-node" *ngFor="let trigger of ruleTriggers(rule.id)"
+                         (click)="onEditTrigger(trigger)">
                       <div class="rule-node__title">{{ trigger.title }}</div>
                       <div class="rule-node__body">
                         <div class="trigger">
@@ -89,7 +97,8 @@
                           <div class="trigger-div"></div>
                           <div class="trigger-conditions">
                             <div class="trigger-conditions-item" *ngFor="let condition of trigger.conditions">
-                              <div class="trigger-conditions-item__operator">{{ condition.operator | assetCondition }}</div>
+                              <div
+                                class="trigger-conditions-item__operator">{{ condition.operator | assetCondition }}</div>
                               <div class="trigger-conditions-item__value">{{ condition.value }}</div>
                             </div>
                           </div>

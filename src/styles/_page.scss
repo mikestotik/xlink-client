@@ -48,6 +48,7 @@ $page-header-height: 88px;
 .page-content {
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   &-header {
     flex: 0 0 $page-header-height;
@@ -77,5 +78,6 @@ $page-header-height: 88px;
   &-payload {
     flex: 1 1 auto;
     padding: 0 20px;
+    overflow: auto;
   }
 }

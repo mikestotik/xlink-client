@@ -8,10 +8,23 @@
     align-items: center;
     border-bottom: 1px solid #ffffff10;
     padding: 8px 0;
+    margin-bottom: 4px;
 
     &__title {
-      opacity: 0.75;
-      font-size: 18px;
+      opacity: 0.5;
+      //font-size: 16px;
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+
+      i {
+        margin-right: 8px;
+        //opacity: 0.5;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     &__status {
@@ -96,37 +109,18 @@
     }
 
     &-actions {
-      //display: flex;
-      //align-items: center;
       margin-left: auto;
-      //font-size: 18px;
-
-      //i {
-      //  cursor: pointer;
-      //  opacity: 0.33;
-      //
-      //  &:hover {
-      //    color: var(--color-brand);
-      //    opacity: 1;
-      //  }
-      //
-      //  &.active {
-      //    color: var(--color-brand);
-      //    opacity: 1;
-      //  }
-      //}
     }
   }
 
   &-desc {
     opacity: 0.5;
     font-size: 14px;
-    padding: 4px 0;
+    padding: 8px 0;
   }
 
   &-payload {
     display: flex;
-    margin-top: 4px;
 
     &__section {
       flex: 1;
@@ -171,7 +165,7 @@
 .rule-node {
   display: flex;
   border: 1px dashed #ffffff20;
-  padding: 12px 12px;
+  padding: 16px 12px;
   position: relative;
   border-radius: 4px;
   margin-top: 20px;
@@ -193,6 +187,7 @@
 
   &:hover {
     border-color: #43a04780;
+    background: #43A04708;
   }
 
   &:hover &__title {
@@ -341,11 +336,11 @@
     display: flex;
     align-items: center;
     font-size: 24px;
-    opacity: 0.5;
-    background: var(--color-grey-dark);
+    background: var(--background-accent);
     padding: 8px;
     border-radius: 4px;
     margin-right: 12px;
+    color: #ffffff80;
   }
 
   &__body {
