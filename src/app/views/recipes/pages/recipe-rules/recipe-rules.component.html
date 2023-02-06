@@ -118,7 +118,7 @@
                 <div class="rule-section-body">
                   <ng-container *ngIf="(ruleActions$ | async) as ruleActions">
                     <div class="rule-node" *ngFor="let action of ruleActions(rule.id)" (click)="onEditAction(action)">
-                      <div class="rule-node__title">{{ action.title }}</div>
+                      <div class="rule-node__title">{{ action.type | actionTypeName }}</div>
                       <div class="rule-node__body">
                         <div class="rule-action" *ngIf="action.type === actionType.Email">
                           <div class="rule-action__icon">

@@ -12,7 +12,7 @@ export class ActionTypeNamePipe implements PipeTransform {
       case ActionType.Email:
         return 'Email';
       case ActionType.Alert:
-        return 'Notification';
+        return 'Alert';
       case ActionType.AssetControl:
         return 'Asset Control';
       case ActionType.StepControl:
