@@ -159,7 +159,7 @@
 .rule-node {
   display: flex;
   border: 1px dashed #ffffff20;
-  padding: 16px 12px;
+  padding: 16px 12px 12px;
   position: relative;
   border-radius: 4px;
   margin-top: 20px;
@@ -179,7 +179,7 @@
   }
 
   &:hover {
-    border-color: #ffffff50;
+    border-color: #43a04780;
   }
 
   &:hover &__title {
