@@ -73,6 +73,11 @@
     </div>
 
     <div class="dialog-content__field">
+      <button mat-button color="primary" type="button" (click)="onAddCondition()" style="width: 100%">
+        <i class="icon icon-plus"></i>
+        <span>Add Condition</span>
+      </button>
+      
       <ng-container formArrayName="conditions" *ngFor="let conditionForm of conditions.controls; let i = index">
         <div class="trigger-condition" [formGroupName]="i">
           <mat-form-field class="trigger-condition__select" floatLabel="always">
@@ -93,11 +98,6 @@
           </mat-form-field>
         </div>
       </ng-container>
-
-      <button mat-button color="primary" type="button" (click)="onAddCondition()" style="width: 100%">
-        <i class="icon icon-plus"></i>
-        <span>Add Condition</span>
-      </button>
     </div>
   </div>
 
