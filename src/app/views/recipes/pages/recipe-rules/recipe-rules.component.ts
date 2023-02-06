@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { filter, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { ActionType } from '../../../../enums/action.enum';
 import { RuleAction } from '../../../../interfaces/action.interface';
 import { Recipe } from '../../../../interfaces/recipe.interface';
 import { Rule } from '../../../../interfaces/rule.interface';
@@ -41,6 +42,7 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
   public recipe!: Recipe;
   public steps!: Step[];
+  public actionType = ActionType;
 
   private destroy$ = new Subject<void>();
 

@@ -11,7 +11,7 @@ export class ActionTypeNamePipe implements PipeTransform {
     switch (status) {
       case ActionType.Email:
         return 'Email';
-      case ActionType.Notification:
+      case ActionType.Alert:
         return 'Notification';
       case ActionType.AssetControl:
         return 'Asset Control';

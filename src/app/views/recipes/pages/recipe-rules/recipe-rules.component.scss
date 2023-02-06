@@ -162,7 +162,7 @@
   padding: 16px 12px;
   position: relative;
   border-radius: 4px;
-  margin-top: 24px;
+  margin-top: 20px;
   cursor: pointer;
   transition: border-color 256ms;
 
@@ -174,7 +174,7 @@
     top: -12px;
     left: 8px;
     opacity: 0.75;
-    background: var(--color-dark-primary);
+    background: #303134;
     transition: opacity 256ms;
   }
 
@@ -203,7 +203,7 @@
 
     &-item {
       height: 32px;
-      background: #ffffff10;
+      background: var(--background-accent);
       margin-bottom: 4px;
       position: relative;
       display: flex;
@@ -215,7 +215,7 @@
         content: '';
         height: 1px;
         width: 16px;
-        background: #ffffff10;
+        background: var(--background-accent);
         position: absolute;
         right: -16px;
         top: 52%;
@@ -240,7 +240,7 @@
   &-div {
     margin: 16px 16px;
     width: 4px;
-    background: #ffffff10;
+    background: var(--background-accent);
     border-radius: 2px;
   }
 
@@ -261,14 +261,14 @@
         content: '';
         height: 1px;
         width: 16px;
-        background: #ffffff10;
+        background: var(--background-accent);
         position: absolute;
         left: -16px;
         top: 52%;
       }
 
       &__operator {
-        background: #ffffff10;
+        background: var(--background-accent);
         margin-right: 8px;
         position: relative;
         height: 100%;
@@ -283,7 +283,7 @@
           content: '';
           height: 1px;
           width: 8px;
-          background: #ffffff10;
+          background: var(--background-accent);
           position: absolute;
           right: -8px;
           top: 52%;
@@ -291,7 +291,7 @@
       }
 
       &__value {
-        background: #ffffff10;
+        background: var(--background-accent);
         height: 100%;
         padding: 0 12px;
         display: flex;
@@ -301,5 +301,23 @@
         flex: 1;
       }
     }
+  }
+}
+
+.rule-action {
+  display: flex;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    opacity: 0.5;
+    background: var(--color-grey-dark);
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 12px;
+  }
+
+  &__body {
   }
 }

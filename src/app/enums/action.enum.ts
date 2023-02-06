@@ -1,6 +1,6 @@
 export enum ActionType {
   Email,
-  Notification,
+  Alert,
   AssetControl,
   StepControl,
 }
