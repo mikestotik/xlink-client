@@ -131,7 +131,7 @@
 }
 
 
-.rule-node {
+.rule-section {
   font-size: 14px;
   position: relative;
 
@@ -156,59 +156,80 @@
   }
 }
 
-
-.trigger {
+.rule-node {
   display: flex;
-  border: 1px dashed var(--color-grey-dark);
+  border: 1px dashed #ffffff20;
   padding: 16px 12px;
   position: relative;
   border-radius: 4px;
-  margin-top: 20px;
+  margin-top: 24px;
   cursor: pointer;
-  transition: background 256ms;
+  transition: border-color 256ms;
 
-  &:hover {
-    background: var(--color-grey-dark);
-  }
-
-  &-title {
+  &__title {
     position: absolute;
-    background: var(--color-brand);
     padding: 0 8px;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 4px;
     top: -12px;
-    left: 12px;
+    left: 8px;
+    opacity: 0.75;
+    background: var(--color-dark-primary);
+    transition: opacity 256ms;
   }
+
+  &:hover {
+    border-color: #ffffff50;
+  }
+
+  &:hover &__title {
+    opacity: 1;
+  }
+
+  &__body {
+    width: 100%;
+  }
+}
+
+.trigger {
+  display: flex;
+  align-items: stretch;
 
   &-assets {
     flex: 2;
     display: flex;
     flex-direction: column;
-    margin-right: 12px;
+    justify-content: center;
 
     &-item {
+      height: 32px;
+      background: #ffffff10;
+      margin-bottom: 4px;
+      position: relative;
       display: flex;
       align-items: center;
-      background: var(--background-accent);
-      padding: 8px 12px;
+      padding: 0 12px;
       border-radius: 4px;
-      margin-bottom: 4px;
 
-      &:last-child {
-        margin-bottom: 0;
+      &:after {
+        content: '';
+        height: 1px;
+        width: 16px;
+        background: #ffffff10;
+        position: absolute;
+        right: -16px;
+        top: 52%;
       }
 
       &__icon {
-        margin-right: 8px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        margin-right: 8px;
       }
 
       &__device {
-        opacity: 0.5;
         margin-right: 8px;
+        opacity: 0.75;
       }
 
       &__asset {
@@ -216,26 +237,68 @@
     }
   }
 
+  &-div {
+    margin: 16px 16px;
+    width: 4px;
+    background: #ffffff10;
+    border-radius: 2px;
+  }
+
   &-conditions {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    &__item {
+    &-item {
+      height: 32px;
+      margin-bottom: 4px;
+      position: relative;
       display: flex;
       align-items: center;
-      background: var(--background-accent);
-      padding: 8px 12px;
-      border-radius: 4px;
-      margin-bottom: 4px;
 
-      &:last-child {
-        margin-bottom: 0;
+      &:before {
+        content: '';
+        height: 1px;
+        width: 16px;
+        background: #ffffff10;
+        position: absolute;
+        left: -16px;
+        top: 52%;
       }
 
-      span:first-child {
+      &__operator {
+        background: #ffffff10;
         margin-right: 8px;
-        opacity: 0.5;
+        position: relative;
+        height: 100%;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: var(--color-brand);
+
+        &:after {
+          content: '';
+          height: 1px;
+          width: 8px;
+          background: #ffffff10;
+          position: absolute;
+          right: -8px;
+          top: 52%;
+        }
+      }
+
+      &__value {
+        background: #ffffff10;
+        height: 100%;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        flex: 1;
       }
     }
   }

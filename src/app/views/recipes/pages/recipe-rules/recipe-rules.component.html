@@ -73,31 +73,34 @@
 
           <div class="rule-payload">
             <div class="rule-payload__section">
-              <div class="rule-node">
-                <div class="rule-node-header" (click)="onAddTrigger(rule)">
+              <div class="rule-section">
+                <div class="rule-section-header" (click)="onAddTrigger(rule)">
                   <i class="icon icon-plus"></i>
                   <span>Trigger</span>
                 </div>
 
-                <div class="rule-node-body">
+                <div class="rule-section-body">
                   <ng-container *ngIf="(ruleTriggers$ | async) as ruleTriggers">
-                    <div class="trigger" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
-                      <div class="trigger-title">{{ trigger.title }}</div>
-
-                      <div class="trigger-assets">
-                        <div class="trigger-assets-item" *ngFor="let asset of trigger.assets">
-                          <div class="trigger-assets-item__icon">
-                            <i class="icon icon-package"></i>
+                    <div class="rule-node" *ngFor="let trigger of ruleTriggers(rule.id)" (click)="onEditTrigger(trigger)">
+                      <div class="rule-node__title">{{ trigger.title }}</div>
+                      <div class="rule-node__body">
+                        <div class="trigger">
+                          <div class="trigger-assets">
+                            <div class="trigger-assets-item" *ngFor="let asset of trigger.assets">
+                              <div class="trigger-assets-item__icon">
+                                <i class="icon icon-package"></i>
+                              </div>
+                              <div class="trigger-assets-item__device">{{ asset.device | assetDeviceName }} ::</div>
+                              <div class="trigger-assets-item__asset">{{ asset.title }}</div>
+                            </div>
                           </div>
-                          <div class="trigger-assets-item__device">{{ asset.device | assetDeviceName }} :: </div>
-                          <div class="trigger-assets-item__asset">{{ asset.title }}</div>
-                        </div>
-                      </div>
-
-                      <div class="trigger-conditions">
-                        <div class="trigger-conditions__item" *ngFor="let condition of trigger.conditions">
-                          <span>{{ condition.operator | assetCondition }}</span>
-                          <span>{{ condition.value }}</span>
+                          <div class="trigger-div"></div>
+                          <div class="trigger-conditions">
+                            <div class="trigger-conditions-item" *ngFor="let condition of trigger.conditions">
+                              <div class="trigger-conditions-item__operator">{{ condition.operator | assetCondition }}</div>
+                              <div class="trigger-conditions-item__value">{{ condition.value }}</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -107,12 +110,19 @@
             </div>
 
             <div class="rule-payload__section">
-              <div class="rule-node">
-                <div class="rule-node-header" (click)="onAddAction(rule)">
+              <div class="rule-section">
+                <div class="rule-section-header" (click)="onAddAction(rule)">
                   <i class="icon icon-plus"></i>
                   <span>Action</span>
                 </div>
-                <div class="rule-node-body">...</div>
+                <div class="rule-section-body">
+                  <div class="rule-node">
+                    <div class="rule-node__title">Action Title</div>
+                    <div class="rule-node__body">
+                      ...
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
