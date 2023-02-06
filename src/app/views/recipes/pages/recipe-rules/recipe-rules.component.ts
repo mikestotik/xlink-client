@@ -12,6 +12,7 @@ import { RuleActions } from '../../../../models/rule/store/rule.actions';
 import { RuleState } from '../../../../models/rule/store/rule.state';
 import { StepActions } from '../../../../models/step/store/step.actions';
 import { StepState } from '../../../../models/step/store/step.state';
+import { TriggerActions } from '../../../../models/trigger/store/trigger.actions';
 import { TriggerState } from '../../../../models/trigger/store/trigger.state';
 import { SortUtils } from '../../../../utils/sort.utils';
 import { RecipeTriggerComponent } from '../../dialogs/recipe-trigger/recipe-trigger.component';
@@ -116,11 +117,14 @@ export class RecipeRulesComponent implements OnInit, OnDestroy {
 
 
   public onAddTrigger(rule: Rule): void {
-    this.dialog.open(RecipeTriggerComponent, {
-      data: {
-        rule: rule.id,
-      }
-    });
+    this.store.dispatch(new TriggerActions.Create({
+      title: 'New Trigger',
+      rule: rule.id
+    }))
+      .pipe(
+        switchMap(() => this.store.selectOnce(TriggerState.selectJustCreated))
+      )
+      .subscribe(data => this.dialog.open(RecipeTriggerComponent, { data }));
   }
 
 

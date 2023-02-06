@@ -62,12 +62,12 @@
 
                 <button mat-menu-item (click)="onSwitchRule(rule)">
                   <i class="icon icon-power-off"></i>
-                  <span>{{ rule.disabled ? 'On' : 'Off' }}</span>
+                  <span>Switch {{ rule.disabled ? 'On' : 'Off' }}</span>
                 </button>
 
                 <button mat-menu-item (click)="onAddTrigger(rule)">
-                  <i class="icon icon-target"></i>
-                  <span>Add Target</span>
+                  <i class="icon icon-hummer"></i>
+                  <span>Add Trigger</span>
                 </button>
 
                 <button mat-menu-item (click)="onAddAction(rule)">

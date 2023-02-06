@@ -42,6 +42,12 @@ export class TriggerState {
   }
 
 
+  @Selector()
+  public static selectJustCreated(state: TriggerModel): Trigger {
+    return state.list[0];
+  }
+
+
   constructor(
     private readonly service: TriggerService) {
   }
@@ -68,7 +74,7 @@ export class TriggerState {
 
 
   @Action(TriggerActions.Create)
-  public create(ctx: StateContext<TriggerModel>, { value }: TriggerActions.Create): Observable<unknown> {
+  public create(ctx: StateContext<TriggerModel>, { value }: TriggerActions.Create): Observable<Trigger> {
     return this.service.create(value).pipe(
       tap(value => ctx.setState(
         patch({ list: insertItem(value) })
@@ -78,7 +84,7 @@ export class TriggerState {
 
 
   @Action(TriggerActions.Update)
-  public update(ctx: StateContext<TriggerModel>, { id, value }: TriggerActions.Update): Observable<unknown> {
+  public update(ctx: StateContext<TriggerModel>, { id, value }: TriggerActions.Update): Observable<Trigger> {
     return this.service.update(id, value).pipe(
       tap(value => ctx.setState(patch({
         list: updateItem<Trigger>(item => item?.id === id, patch(value))
@@ -88,7 +94,7 @@ export class TriggerState {
 
 
   @Action(TriggerActions.Delete)
-  public remove(ctx: StateContext<TriggerModel>, { id }: TriggerActions.Delete): Observable<unknown> {
+  public remove(ctx: StateContext<TriggerModel>, { id }: TriggerActions.Delete): Observable<void> {
     return this.service.delete(id).pipe(
       tap(() => ctx.setState(patch({
         list: removeItem<Trigger>(item => item?.id === id)

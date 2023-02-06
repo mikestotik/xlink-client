@@ -19,13 +19,13 @@ export interface TriggerPayload {
   triggered?: boolean;
   color?: string;
   disabled?: boolean;
-  assets: Asset[];
+  assets?: Asset[];
   conditions?: TriggerCondition[];
+  rule: number;
 }
 
 
 export interface Trigger extends Entity, TriggerPayload {
-  rule: number;
   owner: number;
 }
 
