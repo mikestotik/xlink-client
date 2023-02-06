@@ -20,10 +20,10 @@
     </mat-form-field>
 
     <mat-form-field class="dialog-content__field" *ngIf="form.controls.type as control" floatLabel="always">
-      <mat-label>Recovery Trigger</mat-label>
+      <mat-label>Type</mat-label>
       <mat-select [formControl]="control" placeholder="-">
         <mat-option [value]="types.Email">Email</mat-option>
-        <mat-option [value]="types.Alert">Notification</mat-option>
+        <mat-option [value]="types.Alert">Alert</mat-option>
         <mat-option [value]="types.AssetControl">Asset Control</mat-option>
         <mat-option [value]="types.StepControl">Step Control</mat-option>
       </mat-select>
