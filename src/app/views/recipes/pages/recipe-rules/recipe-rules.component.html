@@ -50,22 +50,11 @@
             <div class="rule-header-title">
               <i class="icon icon-bookmark"></i>
               <span>{{ rule.title }}</span>
+              <i class="icon icon-pencil" (click)="onEditRule(rule)"></i>
             </div>
 
-            <div class="rule-header-actions">
-              <i class="icon icon-more-horizontal" [matMenuTriggerFor]="ruleMenu"></i>
-
-              <mat-menu #ruleMenu="matMenu" (click)="onAddTrigger(rule)">
-                <button mat-menu-item (click)="onEditRule(rule)">
-                  <i class="icon icon-pencil"></i>
-                  <span>Edit</span>
-                </button>
-
-                <button mat-menu-item (click)="onSwitchRule(rule)">
-                  <i class="icon icon-power-off"></i>
-                  <span>Switch {{ rule.disabled ? 'On' : 'Off' }}</span>
-                </button>
-              </mat-menu>
+            <div class="rule-header-actions" (click)="onSwitchRule(rule)">
+              <i class="icon icon-power-off" [class.active]="!rule.disabled"></i>
             </div>
           </div>
 
