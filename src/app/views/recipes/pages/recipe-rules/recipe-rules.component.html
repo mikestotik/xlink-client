@@ -53,8 +53,10 @@
               <i class="icon icon-pencil" (click)="onEditRule(rule)"></i>
             </div>
 
-            <div class="rule-header-actions" (click)="onSwitchRule(rule)">
-              <i class="icon icon-power-off" [class.active]="!rule.disabled"></i>
+            <div class="rule-header-actions" >
+              <mat-slide-toggle [checked]="!rule.disabled" (click)="onSwitchRule(rule)" color="primary" labelPosition="before">
+<!--                {{ rule.disabled ? 'On' : 'Off' }}-->
+              </mat-slide-toggle>
             </div>
           </div>
 
@@ -76,6 +78,7 @@
                         <div class="trigger">
                           <div class="trigger-assets">
                             <div class="trigger-assets-item" *ngFor="let asset of trigger.assets">
+                              <div class="trigger-assets-item__badge"></div>
                               <div class="trigger-assets-item__icon">
                                 <i class="icon icon-package"></i>
                               </div>
@@ -114,7 +117,7 @@
                             <i class="icon icon-email"></i>
                           </div>
                           <div class="rule-action__body">
-                            View email setup
+                            {{ action.title }}
                           </div>
                         </div>
 
@@ -123,7 +126,7 @@
                             <i class="icon icon-bell"></i>
                           </div>
                           <div class="rule-action__body">
-                            View alert setup
+                            {{ action.title }}
                           </div>
                         </div>
 
@@ -132,7 +135,7 @@
                             <i class="icon icon-package"></i>
                           </div>
                           <div class="rule-action__body">
-                            View controls setup
+                            {{ action.title }}
                           </div>
                         </div>
 
@@ -141,7 +144,7 @@
                             <i class="icon icon-control-shuffle"></i>
                           </div>
                           <div class="rule-action__body">
-                            View step setup
+                            {{ action.title }}
                           </div>
                         </div>
                       </div>
