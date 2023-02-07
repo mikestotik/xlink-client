@@ -1,7 +1,7 @@
 .step {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 
   &-header {
     display: flex;
@@ -12,14 +12,12 @@
 
     &__title {
       opacity: 0.5;
-      //font-size: 16px;
       display: flex;
       align-items: center;
       text-transform: uppercase;
 
       i {
         margin-right: 8px;
-        //opacity: 0.5;
         font-size: 18px;
         display: flex;
         align-items: center;
@@ -72,7 +70,7 @@
 .rule {
   display: flex;
   flex-direction: column;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   border-radius: 4px;
   overflow: hidden;
   background: var(--background-accent);
